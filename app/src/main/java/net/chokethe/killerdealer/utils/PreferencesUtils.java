@@ -80,6 +80,12 @@ public class PreferencesUtils {
     }
 
     public static List<Integer> getBlindsList(Context context) {
+        List<Integer> blindsList = getRawBlindsList(context);
+        blindsList.addAll(getGeneratedNextBlinds(blindsList));
+        return blindsList;
+    }
+
+    public static List<Integer> getRawBlindsList(Context context) {
         List<Integer> blindsList = new ArrayList<>();
         int blind;
         for (int i = 0; i < 20; i++) {
@@ -93,11 +99,11 @@ public class PreferencesUtils {
             blindsList.add(DEFAULT_SMALL_BLIND);
             blindsList.add(DEFAULT_BIG_BLIND);
         }
-        generateNextBlinds(blindsList);
         return blindsList;
     }
 
-    private static void generateNextBlinds(List<Integer> blindsList) {
+    public static List<Integer> getGeneratedNextBlinds(List<Integer> blindsList) {
+        List<Integer> generatedBlindsList = new ArrayList<>();
         int blindsListSize = blindsList.size();
         int missing = 100 - blindsListSize;
         int generator = DEFAULT_MULTIPLIER;
@@ -109,16 +115,29 @@ public class PreferencesUtils {
             if (generatedBlind > MAX_BLIND) {
                 break;
             }
-            blindsList.add(generatedBlind);
+            generatedBlindsList.add(generatedBlind);
         }
+        return generatedBlindsList;
+    }
+
+    public static void setBlindsList(Context context, List<Integer> blindsList) {
+        // TODO: foreach set the blind
     }
 
     public static long getRiseTime(Context context) {
         return getLongValue(context, R.string.rise_timer_pref, DEFAULT_RISE_TIME);
     }
 
+    public static void setRiseTime(Context context, long riseTime) {
+        setLongValue(context, R.string.rise_timer_pref, riseTime);
+    }
+
     public static long getRebuyTime(Context context) {
         return getLongValue(context, R.string.rebuy_timer_pref, DEFAULT_REBUY_TIME);
+    }
+
+    public static void setRebuyTime(Context context, long rebuyTime) {
+        setLongValue(context, R.string.rebuy_timer_pref, rebuyTime);
     }
 
     public static long getPausedRiseTime(Context context) {
