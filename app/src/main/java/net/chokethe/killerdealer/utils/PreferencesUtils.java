@@ -11,7 +11,7 @@ import net.chokethe.killerdealer.holders.SessionHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SettingsUtils {
+public class PreferencesUtils {
     private static final int DEFAULT_SMALL_BLIND = 10;
     private static final int DEFAULT_BIG_BLIND = 25;
     private static final long DEFAULT_RISE_TIME = 5000;//900000;
@@ -22,7 +22,7 @@ public class SettingsUtils {
     private static final int DEFAULT_MULTIPLIER = 10;
     private static final int MAX_BLIND = 99999999;
 
-    private SettingsUtils() {
+    private PreferencesUtils() {
     }
 
     private static SharedPreferences sharedPreferences;

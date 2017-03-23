@@ -2,9 +2,10 @@ package net.chokethe.killerdealer.holders;
 
 import android.content.Context;
 
-import net.chokethe.killerdealer.utils.SettingsUtils;
+import net.chokethe.killerdealer.utils.PreferencesUtils;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SessionHolder {
@@ -44,26 +45,26 @@ public class SessionHolder {
     public SessionHolder(Context context) {
         long now = System.currentTimeMillis();
 
-        status = SettingsUtils.getStatus(context);
-        lastPlayTime = SettingsUtils.getLastPlayTime(context);
+        status = PreferencesUtils.getStatus(context);
+        lastPlayTime = PreferencesUtils.getLastPlayTime(context);
 
-        riseTimePref = SettingsUtils.getRiseTime(context);
-        rebuyTimePref = SettingsUtils.getRebuyTime(context);
+        riseTimePref = PreferencesUtils.getRiseTime(context);
+        rebuyTimePref = PreferencesUtils.getRebuyTime(context);
         riseTimeLeft = getRiseTimeLeftBySTatus(context, now);
         rebuyTimeLeft = getRebuyTimeLeftByStatus(context, now);
 
-        blindsListPref = SettingsUtils.getBlindsList(context);
+        blindsListPref = PreferencesUtils.getBlindsList(context);
         blindPos = getBlindPosByStatus(context, now);
     }
 
     private long getRiseTimeLeftBySTatus(Context context, long now) {
-        long pausedRiseTime = SettingsUtils.getPausedRiseTime(context);
+        long pausedRiseTime = PreferencesUtils.getPausedRiseTime(context);
         long totalElapsedMillis = TimeUtils.getTotalElapsedMillis(lastPlayTime, pausedRiseTime, riseTimePref, now);
         return getTimeLeftByStatus(totalElapsedMillis, riseTimePref, pausedRiseTime);
     }
 
     private long getRebuyTimeLeftByStatus(Context context, long now) {
-        long pausedRebuyTime = SettingsUtils.getPausedRebuyTime(context);
+        long pausedRebuyTime = PreferencesUtils.getPausedRebuyTime(context);
         long totalElapsedMillis = TimeUtils.getTotalElapsedMillis(lastPlayTime, pausedRebuyTime, rebuyTimePref, now);
         if (isPlaying() && totalElapsedMillis >= rebuyTimePref) {
             return 0;
@@ -86,7 +87,7 @@ public class SessionHolder {
     }
 
     private int getBlindPosByStatus(Context context, long now) {
-        int calculatedPos = SettingsUtils.getBlindPos(context);
+        int calculatedPos = PreferencesUtils.getBlindPos(context);
         if (isPlaying()) {
             long elapsedSteps = TimeUtils.getTotalElapsedMillis(lastPlayTime, riseTimeLeft, riseTimePref, now) / riseTimePref;
             calculatedPos += elapsedSteps;
@@ -98,14 +99,14 @@ public class SessionHolder {
     }
 
     public void save(Context context) {
-        SettingsUtils.setStatus(context, status);
-        SettingsUtils.setBlindPos(context, blindPos);
+        PreferencesUtils.setStatus(context, status);
+        PreferencesUtils.setBlindPos(context, blindPos);
         if (isPlaying()) {
-            SettingsUtils.setLastPlayTime(context, System.currentTimeMillis());
+            PreferencesUtils.setLastPlayTime(context, System.currentTimeMillis());
         }
         if (!isStopped()) {
-            SettingsUtils.setPausedRiseTime(context, riseTimeLeft);
-            SettingsUtils.setPausedRebuyTime(context, rebuyTimeLeft);
+            PreferencesUtils.setPausedRiseTime(context, riseTimeLeft);
+            PreferencesUtils.setPausedRebuyTime(context, rebuyTimeLeft);
         }
     }
 
@@ -148,6 +149,10 @@ public class SessionHolder {
         status = Status.ALIVE;
     }
 
+    public ArrayList<Integer> getBlindsListPref() {
+        return (ArrayList<Integer>) blindsListPref;
+    }
+
     public int getSmallBlind() {
         return blindsListPref.get(blindPos).intValue();
     }
@@ -166,6 +171,10 @@ public class SessionHolder {
 
     public void setRiseTimeLeft(long riseTimeLeft) {
         this.riseTimeLeft = riseTimeLeft;
+    }
+
+    public long getRebuyTimePref() {
+        return rebuyTimePref;
     }
 
     public long getRebuyTimeLeft() {
