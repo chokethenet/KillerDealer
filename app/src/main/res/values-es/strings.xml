@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="blinds_title">Ciegas</string>
+    <string name="rise_title">Subida</string>
+    <string name="rebuy_title">Recompra</string>
+    <string name="reload_toast">Reiniciado</string>
+    <string name="pause_toast">Pausa</string>
+    <string name="play_toast">Jugando!</string>
+    <string name="mm">M</string>
+    <string name="ss">S</string>
+    <string name="hh">H</string>
+    <string name="config_bar_title">Cunfiguración</string>
+</resources>

@@ -1,0 +1,30 @@
+<resources>
+    <!-- LABELS -->
+    <string name="app_name" translatable="false">KillerDealer</string>
+    <string name="config_bar_title">Configuration</string>
+    <string name="blinds_title">Blinds</string>
+    <string name="rise_title">Rise</string>
+    <string name="rebuy_title">Rebuy</string>
+
+    <!-- PREFS -->
+    <string name="status_pref" translatable="false">status-pref</string>
+    <string name="last_play_time_pref" translatable="false">last-play-time-pref</string>
+    <string name="blind_pref" translatable="false">blind-pref</string>
+    <string name="pause_small_blind_pref" translatable="false">paused-small-blind-pref</string>
+    <string name="pause_big_blind_pref" translatable="false">paused-big-blind-pref</string>
+    <string name="rise_timer_pref" translatable="false">rise-timer-pref</string>
+    <string name="rebuy_timer_pref" translatable="false">rebuy-timer-pref</string>
+    <string name="pause_rise_time_pref" translatable="false">paused-rise-time-pref</string>
+    <string name="pause_rebuy_time_pref" translatable="false">paused-rebuy-time-pref</string>
+    <string name="blind_pos_pref" translatable="false">blins-pos-pref</string>
+
+    <!--TOASTS-->
+    <string name="reload_toast">Reset</string>
+    <string name="play_toast">Playing!</string>
+    <string name="pause_toast">Pause</string>
+
+    <!--CONFIG-->
+    <string name="mm">M</string>
+    <string name="ss">S</string>
+    <string name="hh">H</string>
+</resources>
