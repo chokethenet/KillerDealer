@@ -1,25 +1,36 @@
 package net.chokethe.killerdealer;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
+import net.chokethe.killerdealer.adapters.BlindsAdapter;
 import net.chokethe.killerdealer.holders.BlindsConfigHolder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BlindsConfigActivity extends AppCompatActivity {
 
     private BlindsConfigHolder mBlindsConfigHolder;
+    private BlindsAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blinds_config);
 
-        // TODO: init the views
-        // 3. set the blinds and the first generated blinds (this holder must have separated lists)
-        // 4. save the holder in onStop, no need to save button, whatever you put is saved at exit
+        FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.fab);
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.showToast(BlindsConfigActivity.this, "ADD BLIND");
+                mAdapter.getBlinds().add(0);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -30,16 +41,40 @@ public class BlindsConfigActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-        List<Integer> blindsList = mBlindsConfigHolder.getBlindsListPref();
-        List<Integer> generatedBlindsList = mBlindsConfigHolder.getGeneratedBlindsListPref();
-        // TODO: update the blind inputs and the generated list
+        // TODO: update the blind result textview with a pretty print from the lists
+
+        mAdapter = new BlindsAdapter(this, mBlindsConfigHolder.getBlindsListPref());
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // FIXME: usar estilos más pequeños y variables con los circulos?
+        mRecyclerView.setAdapter(mAdapter);
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                Integer blind = (Integer) viewHolder.itemView.getTag();
+                mAdapter.getBlinds().remove(blind);
+                mAdapter.notifyDataSetChanged();
+                MainActivity.showToast(BlindsConfigActivity.this, "DELETE BLIND");
+            }
+        }).attachToRecyclerView(mRecyclerView);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        // TODO: get values from inputs and generate the list
-        mBlindsConfigHolder.setBlindsListPref(new ArrayList<Integer>());
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mBlindsConfigHolder.setBlindsListPref(mAdapter.getBlinds());
         mBlindsConfigHolder.save(this);
     }
+
 }

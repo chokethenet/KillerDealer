@@ -1,5 +1,6 @@
 package net.chokethe.killerdealer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,7 +15,7 @@ import net.chokethe.killerdealer.utils.TimeUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Toast mToast;
+    private static Toast mToast;
 
     private TextView mSmallBlindTextView;
     private TextView mBigBlindTextView;
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void reloadOnClick() {
-        showToast(getString(R.string.reload_toast));
+        showToast(this, getString(R.string.reload_toast));
         cancelTimers();
         mSessionHolder.reset();
         updateUI();
@@ -133,12 +134,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void handleTimers() {
         if (mSessionHolder.isPlaying()) {
-            showToast(getString(R.string.play_toast));
+            showToast(this, getString(R.string.play_toast));
             updatePlayPauseUI();
             mRiseTimer = createAndStartRiseTimer(mSessionHolder.getRiseTimeLeft());
             mRebuyTimer = createAndStartRebuyTimer();
         } else if (mSessionHolder.isPaused()) {
-            showToast(getString(R.string.pause_toast));
+            showToast(this, getString(R.string.pause_toast));
             updatePlayPauseUI();
             cancelTimers();
         }
@@ -193,20 +194,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void notifyRiseBlinds() {
         // TODO: vibrate
         // TODO: sound
-        showToast("Rise done!");
+        showToast(this, "Rise done!");
     }
 
     private void notifyRebuyEnd() {
         // TODO: vibrate
         // TODO: sound
-        showToast("Rebuy ended!");
+        showToast(this, "Rebuy ended!");
     }
 
-    private void showToast(String text) {
+    public static void showToast(Context context, String text) {
         if (mToast != null) {
             mToast.cancel();
         }
-        mToast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
         mToast.show();
     }
 }

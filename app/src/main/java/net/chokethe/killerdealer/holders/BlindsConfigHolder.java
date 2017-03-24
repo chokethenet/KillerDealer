@@ -17,6 +17,7 @@ public class BlindsConfigHolder {
     }
 
     public void save(Context context) {
+        // TODO: validar que la lista está ordenada
         PreferencesUtils.setBlindsList(context, blindsListPref);
     }
 
