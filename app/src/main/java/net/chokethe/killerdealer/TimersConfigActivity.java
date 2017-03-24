@@ -5,30 +5,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.NumberPicker;
 
 import net.chokethe.killerdealer.holders.TimersConfigHolder;
+import net.chokethe.killerdealer.utils.TimeUtils;
 
 public class TimersConfigActivity extends AppCompatActivity {
 
     private TimersConfigHolder mTimersConfigHolder;
+    private NumberPicker mNumberPickerRiseMM;
+    private NumberPicker mNumberPickerRiseSS;
+    private NumberPicker mNumberPickerRebuyHH;
+    private NumberPicker mNumberPickerRebuyMM;
+    private NumberPicker mNumberPickerRebuySS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timers_config);
 
-        // TODO: change the init for the pickers to get a global variable for each?
-        int[] pickerIds = {
-                R.id.np_rise_ss_config,
-                R.id.np_rise_mm_config,
-                R.id.np_rebuy_ss_config,
-                R.id.np_rebuy_mm_config,
-                R.id.np_rebuy_hh_config
-        };
-        NumberPicker picker;
-        for (int pickerId : pickerIds) {
-            picker = (NumberPicker) findViewById(pickerId);
-            picker.setMinValue(0);
-            picker.setMaxValue(59);
-        }
+        mNumberPickerRiseMM = (NumberPicker) findViewById(R.id.np_rise_mm_config);
+        mNumberPickerRiseSS = (NumberPicker) findViewById(R.id.np_rise_ss_config);
+        mNumberPickerRebuyHH = (NumberPicker) findViewById(R.id.np_rebuy_hh_config);
+        mNumberPickerRebuyMM = (NumberPicker) findViewById(R.id.np_rebuy_mm_config);
+        mNumberPickerRebuySS = (NumberPicker) findViewById(R.id.np_rebuy_ss_config);
     }
 
     @Override
@@ -40,17 +37,41 @@ public class TimersConfigActivity extends AppCompatActivity {
 
     private void updateUI() {
         long riseTime = mTimersConfigHolder.getRiseTimePref();
+        int riseMM = TimeUtils.getMins(riseTime);
+        int riseSS = TimeUtils.getSecs(riseTime);
         long rebuyTime = mTimersConfigHolder.getRebuyTimePref();
-        // TODO: split times in hh, mm and ss
-        // TODO: update the pickers
+        int rebuyHH = TimeUtils.getHours(rebuyTime);
+        int rebuyMM = TimeUtils.getMins(rebuyTime);
+        int rebuySS = TimeUtils.getSecs(rebuyTime);
+        setTimeMinMaxAndValues(mNumberPickerRiseMM, riseMM);
+        setTimeMinMaxAndValues(mNumberPickerRiseSS, riseSS);
+        setTimeMinMaxAndValues(mNumberPickerRebuyHH, rebuyHH);
+        setTimeMinMaxAndValues(mNumberPickerRebuyMM, rebuyMM);
+        setTimeMinMaxAndValues(mNumberPickerRebuySS, rebuySS);
+    }
+
+    private void setTimeMinMaxAndValues(NumberPicker picker, int value) {
+        picker.setMinValue(TimeUtils.MIN_TIME);
+        picker.setMaxValue(TimeUtils.MAX_TIME);
+        picker.setValue(value);
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        // TODO: get values from pickers and calculate both times
-        mTimersConfigHolder.setRiseTimePref(0);
-        mTimersConfigHolder.setRebuyTimePref(0);
+    protected void onPause() {
+        super.onPause();
+        updateValues();
         mTimersConfigHolder.save(this);
+    }
+
+    private void updateValues() {
+        int riseMM = mNumberPickerRiseMM.getValue();
+        int riseSS = mNumberPickerRiseSS.getValue();
+        long riseTime = TimeUtils.getMinsInMillis(riseMM) + TimeUtils.getSecsInMillis(riseSS);
+        int rebuyHH = mNumberPickerRebuyHH.getValue();
+        int rebuyMM = mNumberPickerRebuyMM.getValue();
+        int rebuySS = mNumberPickerRebuySS.getValue();
+        long rebuyTime = TimeUtils.getHoursInMillis(rebuyHH) + TimeUtils.getMinsInMillis(rebuyMM) + TimeUtils.getSecsInMillis(rebuySS);
+        mTimersConfigHolder.setRiseTimePref(riseTime);
+        mTimersConfigHolder.setRebuyTimePref(rebuyTime);
     }
 }

@@ -5,7 +5,6 @@ import android.content.Context;
 import net.chokethe.killerdealer.utils.PreferencesUtils;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SessionHolder {
@@ -53,7 +52,7 @@ public class SessionHolder {
         riseTimeLeft = getRiseTimeLeftBySTatus(context, now);
         rebuyTimeLeft = getRebuyTimeLeftByStatus(context, now);
 
-        blindsListPref = PreferencesUtils.getBlindsList(context);
+        blindsListPref = PreferencesUtils.getFullBlindsList(context);
         blindPos = getBlindPosByStatus(context, now);
     }
 
@@ -149,10 +148,6 @@ public class SessionHolder {
         status = Status.ALIVE;
     }
 
-    public ArrayList<Integer> getBlindsListPref() {
-        return (ArrayList<Integer>) blindsListPref;
-    }
-
     public int getSmallBlind() {
         return blindsListPref.get(blindPos).intValue();
     }
@@ -171,10 +166,6 @@ public class SessionHolder {
 
     public void setRiseTimeLeft(long riseTimeLeft) {
         this.riseTimeLeft = riseTimeLeft;
-    }
-
-    public long getRebuyTimePref() {
-        return rebuyTimePref;
     }
 
     public long getRebuyTimeLeft() {

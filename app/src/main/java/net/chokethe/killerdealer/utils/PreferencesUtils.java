@@ -14,8 +14,8 @@ import java.util.List;
 public class PreferencesUtils {
     private static final int DEFAULT_SMALL_BLIND = 10;
     private static final int DEFAULT_BIG_BLIND = 25;
-    private static final long DEFAULT_RISE_TIME = 5000;//900000;
-    private static final long DEFAULT_REBUY_TIME = 10000;//7200000;
+    private static final long DEFAULT_RISE_TIME = 900000;
+    private static final long DEFAULT_REBUY_TIME = 7200000;
     private static final int DEFAULT_STATUS = SessionHolder.Status.DEAD.getId();
     private static final long DEFAULT_LAST_PLAY_TIME = 0;
     private static final int DEFAULT_BLINDS_POS = 0;
@@ -50,7 +50,7 @@ public class PreferencesUtils {
 
     private static void setIntValue(Context context, int id, int value) {
         getSharedPreferencesEditor(context).putInt(context.getString(id), value);
-        editor.commit();
+        getSharedPreferencesEditor(context).commit();
     }
 
     private static long getLongValue(Context context, int id, long def) {
@@ -59,7 +59,7 @@ public class PreferencesUtils {
 
     private static void setLongValue(Context context, int id, long value) {
         getSharedPreferencesEditor(context).putLong(context.getString(id), value);
-        editor.commit();
+        getSharedPreferencesEditor(context).commit();
     }
 
     // Prefs methods
@@ -79,7 +79,7 @@ public class PreferencesUtils {
         setLongValue(context, R.string.last_play_time_pref, lastPlayTime);
     }
 
-    public static List<Integer> getBlindsList(Context context) {
+    public static List<Integer> getFullBlindsList(Context context) {
         List<Integer> blindsList = getRawBlindsList(context);
         blindsList.addAll(getGeneratedNextBlinds(blindsList));
         return blindsList;
@@ -111,7 +111,12 @@ public class PreferencesUtils {
             generator = generator * DEFAULT_MULTIPLIER;
         }
         for (int pos = 0; pos < missing; pos++) {
-            int generatedBlind = blindsList.get(pos) * generator;
+            int generatedBlind;
+            if (pos < blindsListSize) {
+                generatedBlind = blindsList.get(pos) * generator;
+            } else {
+                generatedBlind = generatedBlindsList.get(pos - blindsListSize) * generator;
+            }
             if (generatedBlind > MAX_BLIND) {
                 break;
             }
@@ -121,7 +126,16 @@ public class PreferencesUtils {
     }
 
     public static void setBlindsList(Context context, List<Integer> blindsList) {
-        // TODO: foreach set the blind
+        int blindsSize = blindsList.size();
+        for (int i = 0; i < blindsSize; i++) {
+            getSharedPreferencesEditor(context)
+                    .putInt(context.getString(R.string.blind_pref) + i, blindsList.get(i));
+        }
+        for (int i = blindsSize; i < 20; i++) {
+            getSharedPreferencesEditor(context)
+                    .putInt(context.getString(R.string.blind_pref) + i, 0);
+        }
+        getSharedPreferencesEditor(context).commit();
     }
 
     public static long getRiseTime(Context context) {

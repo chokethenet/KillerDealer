@@ -5,13 +5,16 @@ public class TimeUtils {
     public static int MINS_IN_MILLIS = 60000;
     public static int SECS_IN_MILLIS = 1000;
 
+    public static int MIN_TIME = 0;
+    public static int MAX_TIME = 59;
+
     private TimeUtils() {
     }
 
     public static String getPrettyTime(long millis) {
-        long hours = millis / HOURS_IN_MILLIS;
-        long minutes = (millis / MINS_IN_MILLIS) % 60;
-        long seconds = (millis / SECS_IN_MILLIS) % 60;
+        long hours = getHours(millis);
+        long minutes = getMins(millis);
+        long seconds = getSecs(millis);
         return (hours == 0 ? "" : hours + ":")
                 + (String.valueOf(minutes).length() == 1 ? "0" + minutes : minutes) + ":"
                 + (String.valueOf(seconds).length() == 1 ? "0" + seconds : seconds);
@@ -27,4 +30,29 @@ public class TimeUtils {
             return totalElapsedMillis;
         }
     }
+
+    public static int getHours(long millis) {
+        return (int) (millis / HOURS_IN_MILLIS);
+    }
+
+    public static long getHoursInMillis(int hours) {
+        return hours * HOURS_IN_MILLIS;
+    }
+
+    public static int getMins(long millis) {
+        return (int) ((millis / MINS_IN_MILLIS) % 60);
+    }
+
+    public static long getMinsInMillis(int minutes) {
+        return minutes * MINS_IN_MILLIS;
+    }
+
+    public static int getSecs(long millis) {
+        return (int) ((millis / SECS_IN_MILLIS) % 60);
+    }
+
+    public static long getSecsInMillis(int seconds) {
+        return seconds * SECS_IN_MILLIS;
+    }
+
 }

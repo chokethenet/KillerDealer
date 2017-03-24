@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import net.chokethe.killerdealer.holders.BlindsConfigHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BlindsConfigActivity extends AppCompatActivity {
@@ -38,7 +39,7 @@ public class BlindsConfigActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         // TODO: get values from inputs and generate the list
-        mBlindsConfigHolder.setBlindsListPref(null);
+        mBlindsConfigHolder.setBlindsListPref(new ArrayList<Integer>());
         mBlindsConfigHolder.save(this);
     }
 }
