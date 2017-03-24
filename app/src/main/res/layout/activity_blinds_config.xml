@@ -1,9 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.chokethe.killerdealer.BlindsConfigActivity">
+    tools:context="net.chokethe.killerdealer.BlindsConfigActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_blind_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/blinds_title"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        style="@style/KillerDealer.Text.title"/>
+
+    <TextView
+        android:id="@+id/tv_blind_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/KillerDealer.Text"
+        android:layout_marginLeft="44dp"
+        android:layout_marginRight="44dp"
+        android:text="5, 10, 25, 50, 100, 200, 400, 750, 1000, 1500, 2500, 5000, 10000, 25000, 50000, 100000, 200000, 400000, 750000, 1000000, 1500000, 2500000, ..." />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:clickable="true"
+        app:elevation="10dp"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/ic_add" />
+
+    <ScrollView
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginRight="44dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/sv_blinds"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="5" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="10" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="25" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="50" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="100" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="200" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="400" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="750" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="1000" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="1500" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/KillerDealer.Text.number"
+                android:text="2500" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
