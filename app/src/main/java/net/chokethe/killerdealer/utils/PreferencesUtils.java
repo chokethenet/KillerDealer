@@ -9,6 +9,7 @@ import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.holders.SessionHolder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PreferencesUtils {
@@ -95,22 +96,32 @@ public class PreferencesUtils {
                 blindsList.add(blind);
             }
         }
+        generateDefaultBlinds(blindsList);
+        return blindsList;
+    }
+
+    public static void generateDefaultBlinds(List<Integer> blindsList) {
         if (blindsList.isEmpty()) {
             blindsList.add(DEFAULT_SMALL_BLIND);
             blindsList.add(DEFAULT_BIG_BLIND);
         }
-        return blindsList;
     }
 
     public static List<Integer> getGeneratedNextBlinds(List<Integer> blindsList) {
         List<Integer> generatedBlindsList = new ArrayList<>();
+        int pos = 0;
+
         int blindsListSize = blindsList.size();
-        int missing = 100 - blindsListSize;
         int generator = DEFAULT_MULTIPLIER;
         while (blindsList.get(0) * generator < blindsList.get(blindsListSize - 1)) {
             generator = generator * DEFAULT_MULTIPLIER;
         }
-        for (int pos = 0; pos < missing; pos++) {
+        if (blindsList.get(0) * generator == blindsList.get(blindsListSize - 1)) {
+            pos++;
+        }
+
+        int missing = 100 - blindsListSize;
+        for (; pos < missing; pos++) {
             int generatedBlind;
             if (pos < blindsListSize) {
                 generatedBlind = blindsList.get(pos) * generator;
@@ -126,6 +137,7 @@ public class PreferencesUtils {
     }
 
     public static void setBlindsList(Context context, List<Integer> blindsList) {
+        Collections.sort(blindsList);
         int blindsSize = blindsList.size();
         for (int i = 0; i < blindsSize; i++) {
             getSharedPreferencesEditor(context)

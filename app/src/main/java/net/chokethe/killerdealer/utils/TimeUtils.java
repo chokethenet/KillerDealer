@@ -1,9 +1,9 @@
 package net.chokethe.killerdealer.utils;
 
 public class TimeUtils {
-    public static int HOURS_IN_MILLIS = 3600000;
-    public static int MINS_IN_MILLIS = 60000;
-    public static int SECS_IN_MILLIS = 1000;
+    private static int HOURS_IN_MILLIS = 3600000;
+    private static int MINS_IN_MILLIS = 60000;
+    private static int SECS_IN_MILLIS = 1000;
 
     public static int MIN_TIME = 0;
     public static int MAX_TIME = 59;
@@ -26,8 +26,7 @@ public class TimeUtils {
         } else {
             long pausedElapsedMillis = timePref - timeLeft;
             long playingStartedMillis = lastPlayTime - pausedElapsedMillis;
-            long totalElapsedMillis = now - playingStartedMillis;
-            return totalElapsedMillis;
+            return now - playingStartedMillis;
         }
     }
 

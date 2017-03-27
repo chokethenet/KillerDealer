@@ -7,6 +7,8 @@
     tools:context="net.chokethe.killerdealer.TimersConfigActivity">
 
     <TextView
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/tv_rise_config"
         style="@style/KillerDealer.Text.title"
         android:layout_marginLeft="44dp"

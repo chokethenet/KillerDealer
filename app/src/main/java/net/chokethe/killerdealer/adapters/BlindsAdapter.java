@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import net.chokethe.killerdealer.BlindsConfigActivity;
 import net.chokethe.killerdealer.R;
 
 import java.util.List;
@@ -46,11 +47,11 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         return mBlinds.size();
     }
 
-    public class BlindViewHolder extends RecyclerView.ViewHolder {
+    class BlindViewHolder extends RecyclerView.ViewHolder {
         EditText mBlind;
         BlindEditTextListener mBlindEditTextListener;
 
-        public BlindViewHolder(View itemView, BlindEditTextListener blindEditTextListener) {
+        BlindViewHolder(View itemView, BlindEditTextListener blindEditTextListener) {
             super(itemView);
             mBlind = (EditText) itemView.findViewById(R.id.et_blind);
             mBlindEditTextListener = blindEditTextListener;
@@ -61,7 +62,7 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
     private class BlindEditTextListener implements TextWatcher {
         private int position;
 
-        public void updatePosition(int position) {
+        void updatePosition(int position) {
             this.position = position;
         }
 
@@ -79,6 +80,7 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
 
         @Override
         public void afterTextChanged(Editable editable) {
+            BlindsConfigActivity.updateResultUI(mContext);
         }
     }
 }

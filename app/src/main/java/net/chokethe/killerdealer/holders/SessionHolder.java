@@ -120,15 +120,15 @@ public class SessionHolder {
         setRiseTimeLeft(riseTimePref);
     }
 
-    public void resetRebuyTimeLeft() {
+    private void resetRebuyTimeLeft() {
         setRebuyTimeLeft(rebuyTimePref);
     }
 
-    public boolean isStopped() {
+    private boolean isStopped() {
         return status.equals(Status.DEAD);
     }
 
-    public void setStopped() {
+    private void setStopped() {
         status = Status.DEAD;
     }
 
@@ -149,11 +149,11 @@ public class SessionHolder {
     }
 
     public int getSmallBlind() {
-        return blindsListPref.get(blindPos).intValue();
+        return blindsListPref.get(blindPos);
     }
 
     public int getBigBlind() {
-        return blindsListPref.get(blindPos + 1).intValue();
+        return blindsListPref.get(blindPos + 1);
     }
 
     public long getRiseTimePref() {
