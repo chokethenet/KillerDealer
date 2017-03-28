@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.chokethe.killerdealer">
 
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -36,6 +38,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <receiver android:name=".notifications.NotificationPublisher" android:exported="false" />
+        <!--<service android:name=".notifications.NotificationIntentService" android:exported="false"/>-->
     </application>
 
 </manifest>

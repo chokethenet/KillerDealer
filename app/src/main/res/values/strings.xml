@@ -22,6 +22,8 @@
     <string name="reload_toast">Reset</string>
     <string name="play_toast">Playing!</string>
     <string name="pause_toast">Pause</string>
+    <string name="rise_done_toast">Rise done!</string>
+    <string name="rebuy_end_toast">Rebuy ended!</string>
 
     <!--CONFIG-->
     <string name="mm">M</string>

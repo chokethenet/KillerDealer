@@ -2,8 +2,14 @@ package net.chokethe.killerdealer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.chokethe.killerdealer.holders.SessionHolder;
+import net.chokethe.killerdealer.notifications.NotificationUtils;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -53,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSessionHolder = new SessionHolder(this);
         updateUI();
         handleTimers();
-        // TODO: if pending notif on blinds or rebuys, cancel
+        NotificationUtils.cancelScheduledNotifications(this);
     }
 
     @Override
@@ -61,8 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onStop();
         cancelTimers();
         mSessionHolder.save(this);
-        // TODO: set next blind notif to call notifyRiseBlinds(); recursively for mSessionHolder.getRiseTimePref()
-        // TODO: set next rebuy notif to call notifyRebuyEnd();
+        NotificationUtils.scheduleNotifications(this, mSessionHolder);
     }
 
     // UI
@@ -159,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mRiseTimer = createAndStartRiseTimer(mSessionHolder.getRiseTimePref());
                 mSessionHolder.setNextBlindPos();
                 updateBlindsUI();
-                notifyRiseBlinds();
+                alertRiseBlinds();
             }
         }.start();
     }
@@ -175,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFinish() {
                 cancelTimerIfNotNull(mRebuyTimer);
-                notifyRebuyEnd();
+                alertRebuyEnd();
             }
         }.start();
     }
@@ -191,16 +197,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void notifyRiseBlinds() {
-        // TODO: vibrate
-        // TODO: sound
-        showToast(this, "Rise done!");
+    private void alertRiseBlinds() {
+        customAlert(getString(R.string.rise_done_toast));
     }
 
-    private void notifyRebuyEnd() {
-        // TODO: vibrate
-        // TODO: sound
-        showToast(this, "Rebuy ended!");
+    private void alertRebuyEnd() {
+        customAlert(getString(R.string.rebuy_end_toast));
+    }
+
+    private void customAlert(String message) {
+        new AsyncTask<Context, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Context... context) {
+                AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                if (am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+                    Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    if (vibrator.hasVibrator()) {
+                        vibrator.vibrate(new long[]{0, 300, 300, 300}, -1);
+                    }
+                }
+
+                Uri notificationRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+                try {
+                    mediaPlayer.setDataSource(context[0], notificationRingtoneUri);
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                    while (mediaPlayer.isPlaying()) {
+                    }
+                    mediaPlayer.release();
+                } catch (Exception e) {
+                    return null;
+                }
+                return null;
+            }
+        }.execute(this);
+        showToast(this, message);
     }
 
     public static void showToast(Context context, String text) {

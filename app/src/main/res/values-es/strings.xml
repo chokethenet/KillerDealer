@@ -5,9 +5,11 @@
     <string name="rebuy_title">Recompra</string>
     <string name="reload_toast">Reiniciado</string>
     <string name="pause_toast">Pausa</string>
-    <string name="play_toast">Jugando!</string>
+    <string name="play_toast">¡Jugando!</string>
     <string name="mm">M</string>
     <string name="ss">S</string>
     <string name="hh">H</string>
     <string name="config_bar_title">Configuración</string>
+    <string name="rise_done_toast">¡Ciega subida!</string>
+    <string name="rebuy_end_toast">¡Recompra finalizada!</string>
 </resources>
