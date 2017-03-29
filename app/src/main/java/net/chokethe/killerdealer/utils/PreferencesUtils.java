@@ -9,14 +9,14 @@ import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.holders.SessionHolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class PreferencesUtils {
-    private static final int DEFAULT_SMALL_BLIND = 10;
-    private static final int DEFAULT_BIG_BLIND = 25;
-    private static final long DEFAULT_RISE_TIME = 900000;
-    private static final long DEFAULT_REBUY_TIME = 7200000;
+    private static final Integer[] DEFAULT_BLINDS_LIST = {10, 25, 50, 75};
+    private static final long DEFAULT_RISE_TIME = 1200000;
+    private static final long DEFAULT_REBUY_TIME = 10800000;
     private static final int DEFAULT_STATUS = SessionHolder.Status.DEAD.getId();
     private static final long DEFAULT_LAST_PLAY_TIME = 0;
     private static final int DEFAULT_BLINDS_POS = 0;
@@ -102,8 +102,7 @@ public class PreferencesUtils {
 
     public static void generateDefaultBlinds(List<Integer> blindsList) {
         if (blindsList.isEmpty()) {
-            blindsList.add(DEFAULT_SMALL_BLIND);
-            blindsList.add(DEFAULT_BIG_BLIND);
+            blindsList.addAll(new ArrayList<>(Arrays.asList(DEFAULT_BLINDS_LIST)));
         }
     }
 
