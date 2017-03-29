@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.adapters.BlindsAdapter;
@@ -21,6 +22,7 @@ public class BlindsConfigActivity extends AppCompatActivity {
 
     private BlindsConfigHolder mBlindsConfigHolder;
     private BlindsAdapter mAdapter;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +30,22 @@ public class BlindsConfigActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blinds_config);
 
         mBlindResult = (TextView) findViewById(R.id.tv_blind_result);
-        FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.fab);
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Collections.sort(mAdapter.getBlinds());
                 mAdapter.getBlinds().add(0);
                 mAdapter.notifyDataSetChanged();
+
+                int lastPosition = mAdapter.getItemCount() - 1;
+                mRecyclerView.smoothScrollToPosition(lastPosition);
+                View current = getCurrentFocus();
+                if (current != null) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(current.getWindowToken(), 0);
+                    current.clearFocus();
+                }
                 MainActivity.showToast(BlindsConfigActivity.this, "ADD BLIND");
             }
         });
@@ -55,7 +66,7 @@ public class BlindsConfigActivity extends AppCompatActivity {
                 updateResultUI(BlindsConfigActivity.this);
             }
         });
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
+        mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)); // FIXME: usar estilos más pequeños y variables con los circulos?
         mRecyclerView.setAdapter(mAdapter);

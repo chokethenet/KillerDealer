@@ -6,15 +6,13 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 
 import net.chokethe.killerdealer.MainActivity;
 import net.chokethe.killerdealer.R;
+import net.chokethe.killerdealer.holders.SessionHolder;
 
 public class NotificationPublisher extends BroadcastReceiver {
 
@@ -23,7 +21,6 @@ public class NotificationPublisher extends BroadcastReceiver {
 
     public static final String RISE_NOTIFICATION_ACTION = "rise-notification-tag";
     public static final String REBUY_NOTIFICATION_ACTION = "rebuy-notification-tag";
-    public static final String MILLIS_IN_FUTURE = "millis-in-future";
 
     private static final int OPEN_PENDING_INTENT_ID = 0;
 //    private static final int STOP_PENDING_INTENT_ID = 0;
@@ -32,23 +29,27 @@ public class NotificationPublisher extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         int notificationId;
-        String text;
+        StringBuilder text = new StringBuilder();
         if (RISE_NOTIFICATION_ACTION.equals(intent.getAction())) {
+            long now = System.currentTimeMillis();
+            SessionHolder sessionHolder = new SessionHolder(context, now);
+            sessionHolder.setNextBlindPos();
+            sessionHolder.save(context, now);
+            NotificationUtils.scheduleNotification(context, RISE_NOTIFICATION_ACTION, now, sessionHolder.getRiseTimeLeft());
+
             notificationId = RISE_NOTIFICATION_ID;
-            long millisInFuture = intent.getLongExtra(MILLIS_IN_FUTURE, 0);
-            if (millisInFuture != 0) {
-                NotificationUtils.scheduleNotification(context, RISE_NOTIFICATION_ACTION, millisInFuture, millisInFuture);
-            }
-            text = context.getString(R.string.rise_done_toast);
+            text.append(context.getString(R.string.rise_done_toast));
+            text.append(sessionHolder.getSmallBlind());
+            text.append(" - ");
+            text.append(sessionHolder.getBigBlind());
         } else {
             notificationId = REBUY_NOTIFICATION_ID;
-            text = context.getString(R.string.rebuy_end_toast);
+            text.append(context.getString(R.string.rebuy_end_toast));
         }
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setLargeIcon(largeIcon(context))
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(text)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
@@ -64,11 +65,6 @@ public class NotificationPublisher extends BroadcastReceiver {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(notificationId, notificationBuilder.build());
-    }
-
-    private static Bitmap largeIcon(Context context) {
-        Resources res = context.getResources();
-        return BitmapFactory.decodeResource(res, R.drawable.ic_launcher);
     }
 
     private static PendingIntent contentIntent(Context context) {

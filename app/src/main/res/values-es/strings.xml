@@ -10,6 +10,6 @@
     <string name="ss">S</string>
     <string name="hh">H</string>
     <string name="config_bar_title">Configuración</string>
-    <string name="rise_done_toast">¡Ciega subida!</string>
+    <string name="rise_done_toast">"Ciegas subidas: "</string>
     <string name="rebuy_end_toast">¡Recompra finalizada!</string>
 </resources>

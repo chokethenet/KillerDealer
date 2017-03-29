@@ -57,18 +57,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        mSessionHolder = new SessionHolder(this);
+        NotificationUtils.cancelScheduledNotifications(this);
+        mSessionHolder = new SessionHolder(this, System.currentTimeMillis());
         updateUI();
         handleTimers();
-        NotificationUtils.cancelScheduledNotifications(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         cancelTimers();
-        mSessionHolder.save(this);
-        NotificationUtils.scheduleNotifications(this, mSessionHolder);
+        long now = System.currentTimeMillis();
+        mSessionHolder.save(this, now);
+        NotificationUtils.scheduleNotifications(this, now);
     }
 
     // UI
@@ -171,19 +172,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private CountDownTimer createAndStartRebuyTimer() {
-        return new CountDownTimer(mSessionHolder.getRebuyTimeLeft(), 100) {
-            @Override
-            public void onTick(long remainingMillis) {
-                mSessionHolder.setRebuyTimeLeft(remainingMillis);
-                updateTimerUI(mRebuyTimerTextView, remainingMillis);
-            }
+        if (mSessionHolder.getRebuyTimeLeft() > 0) {
+            return new CountDownTimer(mSessionHolder.getRebuyTimeLeft(), 100) {
+                @Override
+                public void onTick(long remainingMillis) {
+                    mSessionHolder.setRebuyTimeLeft(remainingMillis);
+                    updateTimerUI(mRebuyTimerTextView, remainingMillis);
+                }
 
-            @Override
-            public void onFinish() {
-                cancelTimerIfNotNull(mRebuyTimer);
-                alertRebuyEnd();
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    cancelTimerIfNotNull(mRebuyTimer);
+                    alertRebuyEnd();
+                }
+            }.start();
+        } else {
+            return null;
+        }
     }
 
     private void cancelTimers() {

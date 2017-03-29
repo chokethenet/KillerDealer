@@ -41,19 +41,17 @@ public class SessionHolder {
     private long rebuyTimePref;
     private long rebuyTimeLeft;
 
-    public SessionHolder(Context context) {
-        long now = System.currentTimeMillis();
-
+    public SessionHolder(Context context, long now) {
         status = PreferencesUtils.getStatus(context);
         lastPlayTime = PreferencesUtils.getLastPlayTime(context);
+
+        blindsListPref = PreferencesUtils.getFullBlindsList(context);
+        blindPos = PreferencesUtils.getBlindPos(context);
 
         riseTimePref = PreferencesUtils.getRiseTime(context);
         rebuyTimePref = PreferencesUtils.getRebuyTime(context);
         riseTimeLeft = getRiseTimeLeftBySTatus(context, now);
         rebuyTimeLeft = getRebuyTimeLeftByStatus(context, now);
-
-        blindsListPref = PreferencesUtils.getFullBlindsList(context);
-        blindPos = getBlindPosByStatus(context, now);
     }
 
     private long getRiseTimeLeftBySTatus(Context context, long now) {
@@ -85,23 +83,11 @@ public class SessionHolder {
         return millisLeft;
     }
 
-    private int getBlindPosByStatus(Context context, long now) {
-        int calculatedPos = PreferencesUtils.getBlindPos(context);
-        if (isPlaying()) {
-            long elapsedSteps = TimeUtils.getTotalElapsedMillis(lastPlayTime, riseTimeLeft, riseTimePref, now) / riseTimePref;
-            calculatedPos += elapsedSteps;
-            if (calculatedPos + 1 >= blindsListPref.size()) {
-                calculatedPos = 0;
-            }
-        }
-        return calculatedPos;
-    }
-
-    public void save(Context context) {
+    public void save(Context context, long now) {
         PreferencesUtils.setStatus(context, status);
         PreferencesUtils.setBlindPos(context, blindPos);
         if (isPlaying()) {
-            PreferencesUtils.setLastPlayTime(context, System.currentTimeMillis());
+            PreferencesUtils.setLastPlayTime(context, now);
         }
         if (!isStopped()) {
             PreferencesUtils.setPausedRiseTime(context, riseTimeLeft);
@@ -178,7 +164,7 @@ public class SessionHolder {
 
     public void setNextBlindPos() {
         blindPos++;
-        if (blindPos + 1 >= blindsListPref.size()) {
+        if (blindPos >= blindsListPref.size()) {
             blindPos = 0;
         }
     }
