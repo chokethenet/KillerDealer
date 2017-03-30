@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import net.chokethe.killerdealer.adapters.BlindsAdapter;
 import net.chokethe.killerdealer.holders.BlindsConfigHolder;
+import net.chokethe.killerdealer.utils.CommonUtils;
 
 import java.util.Collections;
 
@@ -46,7 +47,7 @@ public class BlindsConfigActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(current.getWindowToken(), 0);
                     current.clearFocus();
                 }
-                MainActivity.showToast(BlindsConfigActivity.this, "ADD BLIND");
+                CommonUtils.showToast(BlindsConfigActivity.this, getString(R.string.blind_added));
             }
         });
     }
@@ -81,8 +82,11 @@ public class BlindsConfigActivity extends AppCompatActivity {
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 Integer blind = (Integer) viewHolder.itemView.getTag();
                 mAdapter.getBlinds().remove(blind);
+                if (mAdapter.getBlinds().isEmpty()) {
+                    mAdapter.getBlinds().add(0);
+                }
                 mAdapter.notifyDataSetChanged();
-                MainActivity.showToast(BlindsConfigActivity.this, "DELETE BLIND");
+                CommonUtils.showToast(BlindsConfigActivity.this, getString(R.string.blind_deleted));
             }
         }).attachToRecyclerView(mRecyclerView);
 
@@ -106,4 +110,30 @@ public class BlindsConfigActivity extends AppCompatActivity {
         mBlindsConfigHolder.save(this);
     }
 
+    public static void setBlindTextWithAdaptableSize(TextView textView, int value) {
+        setBlindAdaptableSize(textView, value);
+        textView.setText(String.valueOf(value));
+    }
+
+    public static void adaptBlindSize(TextView textView) {
+        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())));
+    }
+
+    private static void setBlindAdaptableSize(TextView textView, int value) {
+        int textSize = 64;
+        if (value > 9999999) {
+            textSize = 20;
+        } else if (value > 999999) {
+            textSize = 22;
+        } else if (value > 99999) {
+            textSize = 26;
+        } else if (value > 9999) {
+            textSize = 30;
+        } else if (value > 999) {
+            textSize = 36;
+        } else if (value > 99) {
+            textSize = 48;
+        }
+        textView.setTextSize(textSize);
+    }
 }

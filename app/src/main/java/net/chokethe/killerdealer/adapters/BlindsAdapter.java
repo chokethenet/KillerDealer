@@ -31,7 +31,7 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
     public BlindViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.blind_layout, parent, false);
-        return new BlindViewHolder(view, new BlindEditTextListener());
+        return new BlindViewHolder(view);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         int blind = mBlinds.get(position);
         holder.itemView.setTag(blind);
         holder.mBlindEditTextListener.updatePosition(position);
-        holder.mBlind.setText(String.valueOf(blind));
+        BlindsConfigActivity.setBlindTextWithAdaptableSize(holder.mBlind, blind);
     }
 
     @Override
@@ -51,9 +51,10 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         EditText mBlind;
         BlindEditTextListener mBlindEditTextListener;
 
-        BlindViewHolder(View itemView, BlindEditTextListener blindEditTextListener) {
+        BlindViewHolder(View itemView) {
             super(itemView);
             mBlind = (EditText) itemView.findViewById(R.id.et_blind);
+            BlindEditTextListener blindEditTextListener = new BlindEditTextListener(mBlind);
             mBlindEditTextListener = blindEditTextListener;
             mBlind.addTextChangedListener(blindEditTextListener);
         }
@@ -61,6 +62,11 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
 
     private class BlindEditTextListener implements TextWatcher {
         private int position;
+        private EditText mBlind;
+
+        public BlindEditTextListener(EditText blind) {
+            mBlind = blind;
+        }
 
         void updatePosition(int position) {
             this.position = position;
@@ -80,6 +86,7 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
 
         @Override
         public void afterTextChanged(Editable editable) {
+            BlindsConfigActivity.adaptBlindSize(mBlind);
             BlindsConfigActivity.updateResultUI(mContext);
         }
     }

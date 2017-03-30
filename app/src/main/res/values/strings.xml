@@ -24,6 +24,8 @@
     <string name="pause_toast">Pause</string>
     <string name="rise_done_toast">"Blinds risen: "</string>
     <string name="rebuy_end_toast">Rebuy ended!</string>
+    <string name="blind_added">Blind added</string>
+    <string name="blind_deleted">Blind deleted!</string>
 
     <!--CONFIG-->
     <string name="mm">M</string>

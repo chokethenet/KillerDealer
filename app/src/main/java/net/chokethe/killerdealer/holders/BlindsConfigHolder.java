@@ -35,7 +35,7 @@ public class BlindsConfigHolder {
         List<Integer> copiedBlindsList = new ArrayList<>();
         copiedBlindsList.addAll(blindsList);
         Collections.sort(copiedBlindsList);
-        while (copiedBlindsList.get(0) == 0) {
+        while (!copiedBlindsList.isEmpty() && copiedBlindsList.get(0) == 0) {
             copiedBlindsList.remove(0);
         }
         PreferencesUtils.generateDefaultBlinds(copiedBlindsList);

@@ -12,4 +12,6 @@
     <string name="config_bar_title">Configuración</string>
     <string name="rise_done_toast">"Ciegas subidas: "</string>
     <string name="rebuy_end_toast">¡Recompra finalizada!</string>
+    <string name="blind_added">Ciega añadida</string>
+    <string name="blind_deleted">Ciega borrada!</string>
 </resources>

@@ -14,15 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.chokethe.killerdealer.holders.SessionHolder;
 import net.chokethe.killerdealer.notifications.NotificationUtils;
+import net.chokethe.killerdealer.utils.CommonUtils;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private static Toast mToast;
 
     private TextView mSmallBlindTextView;
     private TextView mBigBlindTextView;
@@ -80,8 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void updateBlindsUI() {
-        mSmallBlindTextView.setText(String.valueOf(mSessionHolder.getSmallBlind()));
-        mBigBlindTextView.setText(String.valueOf(mSessionHolder.getBigBlind()));
+        BlindsConfigActivity.setBlindTextWithAdaptableSize(mSmallBlindTextView, mSessionHolder.getSmallBlind());
+        BlindsConfigActivity.setBlindTextWithAdaptableSize(mBigBlindTextView, mSessionHolder.getBigBlind());
     }
 
     private void updateTimersUI() {
@@ -124,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void reloadOnClick() {
-        showToast(this, getString(R.string.reload_toast));
+        CommonUtils.showToast(this, getString(R.string.reload_toast));
         cancelTimers();
         mSessionHolder.reset();
         updateUI();
@@ -141,12 +139,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void handleTimers() {
         if (mSessionHolder.isPlaying()) {
-            showToast(this, getString(R.string.play_toast));
+            CommonUtils.showToast(this, getString(R.string.play_toast));
             updatePlayPauseUI();
             mRiseTimer = createAndStartRiseTimer(mSessionHolder.getRiseTimeLeft());
             mRebuyTimer = createAndStartRebuyTimer();
         } else if (mSessionHolder.isPaused()) {
-            showToast(this, getString(R.string.pause_toast));
+            CommonUtils.showToast(this, getString(R.string.pause_toast));
             updatePlayPauseUI();
             cancelTimers();
         }
@@ -239,14 +237,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return null;
             }
         }.execute(this);
-        showToast(this, message);
-    }
-
-    public static void showToast(Context context, String text) {
-        if (mToast != null) {
-            mToast.cancel();
-        }
-        mToast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-        mToast.show();
+        CommonUtils.showToast(this, message);
     }
 }

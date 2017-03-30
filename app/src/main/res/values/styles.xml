@@ -25,9 +25,6 @@
     <style name="KillerDealer.Text.number" parent="KillerDealer.Common.wrapContent">
         <item name="android:textSize">64sp</item>
     </style>
-    <style name="KillerDealer.Text.numberSmall" parent="KillerDealer.Common.wrapContent">
-        <item name="android:textSize">32sp</item>
-    </style>
 
     <style name="KillerDealer.Image"></style>
     <style name="KillerDealer.Image.circle">
