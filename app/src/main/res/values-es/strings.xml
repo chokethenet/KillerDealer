@@ -9,7 +9,7 @@
     <string name="mm">M</string>
     <string name="ss">S</string>
     <string name="hh">H</string>
-    <string name="config_bar_title">Configuración</string>
+    <string name="settings_title">Configuración</string>
     <string name="rise_done_toast">"Ciegas subidas: "</string>
     <string name="rebuy_end_toast">¡Recompra finalizada!</string>
     <string name="blind_added">Ciega añadida</string>
@@ -18,4 +18,14 @@
     <string name="iv_blind_big_desc">Ficha de la ciega grande</string>
     <string name="iv_play_pause_desc">Botón de inicio/pausa</string>
     <string name="iv_reload_desc">Botón de reinicio</string>
+    <string name="notif_pref_title">Notificaciones</string>
+    <string name="notif_vibrate_text">Vibración</string>
+    <string name="notif_sound_text">Sonido</string>
+    <string name="general_pref_title">General</string>
+    <string name="general_screen_text">Pantalla</string>
+    <string name="notif_toast_text">Mensaje</string>
+    <string name="summary_off_pref">Apagado/a</string>
+    <string name="summary_on_pref">Encendido/a</string>
+    <string name="summary_screen_on_pref">Mantener la pantalla encendida</string>
+    <string name="summary_screen_off_pref">No mantener la pantalla encendida</string>
 </resources>

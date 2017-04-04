@@ -2,6 +2,7 @@ package net.chokethe.killerdealer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -10,17 +11,25 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.holders.SessionHolder;
+import net.chokethe.killerdealer.holders.SettingsHolder;
 import net.chokethe.killerdealer.notifications.NotificationUtils;
+import net.chokethe.killerdealer.settings.SettingsActivity;
 import net.chokethe.killerdealer.utils.CommonUtils;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity
+        implements View.OnClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private TextView mSmallBlindTextView;
     private TextView mBigBlindTextView;
@@ -32,11 +41,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CountDownTimer mRebuyTimer;
 
     private SessionHolder mSessionHolder;
+    private SettingsHolder mSettingsHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
         mSmallBlindTextView = (TextView) findViewById(R.id.tv_blind_small);
         mBigBlindTextView = (TextView) findViewById(R.id.tv_blind_big);
@@ -52,9 +64,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPlayPauseView.setOnClickListener(this);
     }
 
+    private void lockScreen() {
+        mSettingsHolder = new SettingsHolder(this);
+        if (mSettingsHolder.isScreenLocked()) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
+        lockScreen();
         NotificationUtils.cancelScheduledNotifications(this);
         mSessionHolder = new SessionHolder(this, System.currentTimeMillis());
         updateUI();
@@ -68,6 +88,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         long now = System.currentTimeMillis();
         mSessionHolder.save(this, now);
         NotificationUtils.scheduleNotifications(this, now);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
+            startActivity(startSettingsActivity);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        mSettingsHolder.updateHolder(this, sharedPreferences, key);
     }
 
     // UI
@@ -213,30 +256,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             protected Void doInBackground(Context... context) {
-                AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                if (am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-                    Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                    if (vibrator.hasVibrator()) {
-                        vibrator.vibrate(new long[]{0, 300, 300, 300}, -1);
+                if (mSettingsHolder.isVibrateOn()) {
+                    AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                    if (am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+                        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                        if (vibrator.hasVibrator()) {
+                            vibrator.vibrate(new long[]{0, 300, 300, 300}, -1);
+                        }
                     }
                 }
 
-                Uri notificationRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                MediaPlayer mediaPlayer = new MediaPlayer();
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
-                try {
-                    mediaPlayer.setDataSource(context[0], notificationRingtoneUri);
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                    while (mediaPlayer.isPlaying()) {
+                if (mSettingsHolder.isSoundOn()) {
+                    Uri notificationRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    MediaPlayer mediaPlayer = new MediaPlayer();
+                    mediaPlayer.setAudioStreamType(AudioManager.STREAM_NOTIFICATION);
+                    try {
+                        mediaPlayer.setDataSource(context[0], notificationRingtoneUri);
+                        mediaPlayer.prepare();
+                        mediaPlayer.start();
+                        while (mediaPlayer.isPlaying()) {
+                        }
+                        mediaPlayer.release();
+                    } catch (Exception e) {
+                        return null;
                     }
-                    mediaPlayer.release();
-                } catch (Exception e) {
-                    return null;
                 }
+
                 return null;
             }
         }.execute(this);
-        CommonUtils.showToast(this, message);
+
+        if (mSettingsHolder.isToastOn()) {
+            CommonUtils.showToast(this, message);
+        }
     }
 }

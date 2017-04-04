@@ -69,7 +69,7 @@ public class BlindsConfigActivity extends AppCompatActivity {
         });
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)); // FIXME: usar estilos más pequeños y variables con los circulos?
+//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)); // FIXME: for future builds with small-big blinds and rise time individually
         mRecyclerView.setAdapter(mAdapter);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {

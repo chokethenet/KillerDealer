@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import net.chokethe.killerdealer.MainActivity;
 import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.holders.SessionHolder;
+import net.chokethe.killerdealer.holders.SettingsHolder;
 
 public class NotificationPublisher extends BroadcastReceiver {
 
@@ -53,7 +54,7 @@ public class NotificationPublisher extends BroadcastReceiver {
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(text)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
-                .setDefaults(Notification.DEFAULT_ALL)
+                .setDefaults(getDefaults(context))
                 .setContentIntent(contentIntent(context))
 //                .addAction(stopAction(context))
 //                .addAction(okAction(context))
@@ -65,6 +66,19 @@ public class NotificationPublisher extends BroadcastReceiver {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(notificationId, notificationBuilder.build());
+    }
+
+    private int getDefaults(Context context) {
+        SettingsHolder mSettingsHolder = new SettingsHolder(context);
+        if (mSettingsHolder.isVibrateOn() && mSettingsHolder.isSoundOn()) {
+            return Notification.DEFAULT_ALL;
+        } else if (!mSettingsHolder.isVibrateOn() && mSettingsHolder.isSoundOn()) {
+            return Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS;
+        } else if (mSettingsHolder.isVibrateOn() && !mSettingsHolder.isSoundOn()) {
+            return Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;
+        } else {
+            return Notification.DEFAULT_LIGHTS;
+        }
     }
 
     private static PendingIntent contentIntent(Context context) {

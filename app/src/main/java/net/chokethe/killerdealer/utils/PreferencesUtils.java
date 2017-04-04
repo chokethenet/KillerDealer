@@ -22,6 +22,10 @@ public class PreferencesUtils {
     private static final int DEFAULT_BLINDS_POS = 0;
     private static final int DEFAULT_MULTIPLIER = 10;
     private static final int MAX_BLIND = 99999999;
+    public static final boolean DEFAULT_SCREEN_ON = false;
+    public static final boolean DEFAULT_VIBRATE_ON = true;
+    public static final boolean DEFAULT_SOUND_ON = true;
+    public static final boolean DEFAULT_TOAST_ON = true;
 
     private PreferencesUtils() {
     }
@@ -61,6 +65,10 @@ public class PreferencesUtils {
     private static void setLongValue(Context context, int id, long value) {
         getSharedPreferencesEditor(context).putLong(context.getString(id), value);
         getSharedPreferencesEditor(context).commit();
+    }
+
+    private static boolean getBoolValue(Context context, int id, boolean def) {
+        return getSharedPreferences(context).getBoolean(context.getString(id), def);
     }
 
     // Prefs methods
@@ -187,5 +195,21 @@ public class PreferencesUtils {
 
     public static void setBlindPos(Context context, int pos) {
         setIntValue(context, R.string.blind_pos_pref, pos);
+    }
+
+    public static boolean isScreenLocked(Context context) {
+        return getBoolValue(context, R.string.general_screen_key, DEFAULT_SCREEN_ON);
+    }
+
+    public static boolean isVibrateOn(Context context) {
+        return getBoolValue(context, R.string.notif_vibrate_key, DEFAULT_VIBRATE_ON);
+    }
+
+    public static boolean isSoundOn(Context context) {
+        return getBoolValue(context, R.string.notif_sound_key, DEFAULT_SOUND_ON);
+    }
+
+    public static boolean isToastOn(Context context) {
+        return getBoolValue(context, R.string.notif_toast_key, DEFAULT_TOAST_ON);
     }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/general_pref_title">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="general_screen_key"
+            android:summaryOn="@string/summary_screen_on_pref"
+            android:summaryOff="@string/summary_screen_off_pref"
+            android:title="@string/general_screen_text" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/notif_pref_title">
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="notif_vibrate_key"
+            android:summaryOn="@string/summary_on_pref"
+            android:summaryOff="@string/summary_off_pref"
+            android:title="@string/notif_vibrate_text" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="notif_sound_key"
+            android:summaryOn="@string/summary_on_pref"
+            android:summaryOff="@string/summary_off_pref"
+            android:title="@string/notif_sound_text" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="notif_toast_key"
+            android:summaryOn="@string/summary_on_pref"
+            android:summaryOff="@string/summary_off_pref"
+            android:title="@string/notif_toast_text" />
+    </PreferenceCategory>
+</PreferenceScreen>
