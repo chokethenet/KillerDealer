@@ -14,4 +14,8 @@
     <string name="rebuy_end_toast">¡Recompra finalizada!</string>
     <string name="blind_added">Ciega añadida</string>
     <string name="blind_deleted">Ciega borrada!</string>
+    <string name="iv_blind_small_desc">Ficha de la ciega pequeña</string>
+    <string name="iv_blind_big_desc">Ficha de la ciega grande</string>
+    <string name="iv_play_pause_desc">Botón de inicio/pausa</string>
+    <string name="iv_reload_desc">Botón de reinicio</string>
 </resources>

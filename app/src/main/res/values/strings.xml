@@ -18,7 +18,7 @@
     <string name="pause_rebuy_time_pref" translatable="false">paused-rebuy-time-pref</string>
     <string name="blind_pos_pref" translatable="false">blins-pos-pref</string>
 
-    <!--TOASTS-->
+    <!-- TOASTS -->
     <string name="reload_toast">Reset</string>
     <string name="play_toast">Playing!</string>
     <string name="pause_toast">Pause</string>
@@ -27,8 +27,14 @@
     <string name="blind_added">Blind added</string>
     <string name="blind_deleted">Blind deleted!</string>
 
-    <!--CONFIG-->
+    <!-- CONFIG -->
     <string name="mm">M</string>
     <string name="ss">S</string>
     <string name="hh">H</string>
+
+    <!-- CONTENT DESCRIPTORS -->
+    <string name="iv_blind_small_desc">Small blind chip</string>
+    <string name="iv_blind_big_desc">Big blind chip</string>
+    <string name="iv_reload_desc">Reload button</string>
+    <string name="iv_play_pause_desc">Play/pause button</string>
 </resources>
