@@ -7,8 +7,8 @@ android {
         applicationId "net.chokethe.killerdealer"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 5
-        versionName "1.7.5"
+        versionCode 6
+        versionName "2.0.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
