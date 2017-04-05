@@ -57,19 +57,14 @@ public class MainActivity extends AppCompatActivity
         mRebuyTimerTextView = (TextView) findViewById(R.id.tv_rebuy_timer);
         mPlayPauseView = (ImageView) findViewById(R.id.iv_play_pause);
 
-        findViewById(R.id.iv_blind_small).setOnClickListener(this);
-        findViewById(R.id.iv_blind_big).setOnClickListener(this);
+        findViewById(R.id.main_iv_blind_left).setOnClickListener(this);
+        findViewById(R.id.main_iv_blind_right).setOnClickListener(this);
+        mSmallBlindTextView.setOnClickListener(this);
+        mBigBlindTextView.setOnClickListener(this);
         mRiseTimerTextView.setOnClickListener(this);
         mRebuyTimerTextView.setOnClickListener(this);
         findViewById(R.id.iv_reload).setOnClickListener(this);
         mPlayPauseView.setOnClickListener(this);
-    }
-
-    private void lockScreen() {
-        mSettingsHolder = new SettingsHolder(this);
-        if (mSettingsHolder.isScreenLocked()) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        }
     }
 
     @Override
@@ -80,6 +75,13 @@ public class MainActivity extends AppCompatActivity
         mSessionHolder = new SessionHolder(this, System.currentTimeMillis());
         updateUI();
         handleTimers();
+    }
+
+    private void lockScreen() {
+        mSettingsHolder = new SettingsHolder(this);
+        if (mSettingsHolder.isScreenLocked()) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
     }
 
     @Override
@@ -148,8 +150,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_blind_small:
-            case R.id.iv_blind_big:
+            case R.id.main_iv_blind_left:
+                mSessionHolder.setPrevBlindPos();
+                updateBlindsUI();
+                break;
+            case R.id.main_iv_blind_right:
+                mSessionHolder.setNextBlindPos();
+                updateBlindsUI();
+                break;
+            case R.id.tv_blind_small:
+            case R.id.tv_blind_big:
                 configOnClick(BlindsConfigActivity.class);
                 break;
             case R.id.tv_rise_timer:

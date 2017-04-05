@@ -164,7 +164,14 @@ public class SessionHolder {
 
     public void setNextBlindPos() {
         blindPos++;
-        if (blindPos >= blindsListPref.size()) {
+        if (blindPos >= blindsListPref.size() - 1) {
+            blindPos = 0;
+        }
+    }
+
+    public void setPrevBlindPos() {
+        blindPos--;
+        if (blindPos < 0) {
             blindPos = 0;
         }
     }
