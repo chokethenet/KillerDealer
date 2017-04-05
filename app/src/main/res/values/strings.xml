@@ -55,7 +55,8 @@
     <!-- ABOUT -->
     <string name="about_title">About</string>
     <string name="about_contact_title">Contact</string>
-    <string name="about_mail" translatable="false">choke84@gmail.com</string>
+    <string name="about_mail_to" translatable="false">choke84@gmail.com</string>
+    <string name="about_mail_subject">Contact from KillerDealer</string>
     <string name="about_collaborate_title">Collaborate</string>
     <string name="about_github" translatable="false">https://github.com/chokethenet/KillerDealer</string>
 </resources>

@@ -1,19 +1,22 @@
 package net.chokethe.killerdealer.about;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.R;
-import net.chokethe.killerdealer.utils.CommonUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AboutActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String URI_MAILTO = "mailto:";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,26 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.about_iv_mail:
             case R.id.about_tv_mail:
-                CommonUtils.showToast(this, "email");
+                intentMail();
                 break;
             case R.id.about_iv_github:
             case R.id.about_tv_github:
-                CommonUtils.showToast(this, "github");
+                intentBrowser();
                 break;
         }
+    }
+
+    private void intentMail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse(URI_MAILTO));
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.about_mail_to)});
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.about_mail_subject));
+        startActivity(intent);
+    }
+
+    private void intentBrowser() {
+        Uri uri = Uri.parse(getString(R.string.about_github));
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }
