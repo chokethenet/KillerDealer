@@ -24,8 +24,6 @@ public class NotificationPublisher extends BroadcastReceiver {
     public static final String REBUY_NOTIFICATION_ACTION = "rebuy-notification-tag";
 
     private static final int OPEN_PENDING_INTENT_ID = 0;
-//    private static final int STOP_PENDING_INTENT_ID = 0;
-//    private static final int OK_PENDING_INTENT_ID = 0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -56,8 +54,6 @@ public class NotificationPublisher extends BroadcastReceiver {
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
                 .setDefaults(getDefaults(context))
                 .setContentIntent(contentIntent(context))
-//                .addAction(stopAction(context))
-//                .addAction(okAction(context))
                 .setAutoCancel(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -85,22 +81,6 @@ public class NotificationPublisher extends BroadcastReceiver {
         Intent startActivityIntent = new Intent(context, MainActivity.class);
         return PendingIntent.getActivity(context, OPEN_PENDING_INTENT_ID, startActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
-
-//    private static NotificationCompat.Action stopAction(Context context) {
-//        return new NotificationCompat.Action(R.drawable.ic_stop, null,
-//                getNotificationPendingIntent(context, NotificationIntentService.ACTION_STOP_NOTIFICATION, STOP_PENDING_INTENT_ID));
-//    }
-
-//    private static NotificationCompat.Action okAction(Context context) {
-//        return new NotificationCompat.Action(R.drawable.ic_done, null,
-//                getNotificationPendingIntent(context, NotificationIntentService.ACTION_OK_NOTIFICATION, OK_PENDING_INTENT_ID));
-//    }
-
-//    private static PendingIntent getNotificationPendingIntent(Context context, String action, int id) {
-//        Intent okIntent = new Intent(context, NotificationIntentService.class);
-//        okIntent.setAction(action);
-//        return PendingIntent.getService(context, id, okIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-//    }
 
     public static void cancelNotifications(Context context) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
