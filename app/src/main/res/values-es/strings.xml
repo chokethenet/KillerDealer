@@ -28,4 +28,7 @@
     <string name="summary_on_pref">Encendido/a</string>
     <string name="summary_screen_on_pref">Mantener la pantalla encendida</string>
     <string name="summary_screen_off_pref">No mantener la pantalla encendida</string>
+    <string name="about_title">Acerca de</string>
+    <string name="about_contact_title">Contacto</string>
+    <string name="about_collaborate_title">Colaborar</string>
 </resources>

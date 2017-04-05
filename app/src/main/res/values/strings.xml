@@ -1,12 +1,15 @@
 <resources>
-    <!-- LABELS -->
+    <!-- MAIN -->
     <string name="app_name" translatable="false">KillerDealer</string>
-    <string name="settings_title">Settings</string>
-    <string name="blinds_title">Blinds</string>
-    <string name="rise_title">Rise</string>
-    <string name="rebuy_title">Rebuy</string>
+    <string name="reload_toast">Reset</string>
+    <string name="play_toast">Playing!</string>
+    <string name="pause_toast">Pause</string>
+    <string name="rise_done_toast">"Blinds risen: "</string>
+    <string name="rebuy_end_toast">Rebuy ended!</string>
+    <string name="iv_reload_desc">Reload button</string>
+    <string name="iv_play_pause_desc">Play/pause button</string>
 
-    <!-- PREFS -->
+    <!-- SESSION -->
     <string name="status_pref" translatable="false">status-pref</string>
     <string name="last_play_time_pref" translatable="false">last-play-time-pref</string>
     <string name="blind_pref" translatable="false">blind-pref</string>
@@ -17,7 +20,23 @@
     <string name="pause_rise_time_pref" translatable="false">paused-rise-time-pref</string>
     <string name="pause_rebuy_time_pref" translatable="false">paused-rebuy-time-pref</string>
     <string name="blind_pos_pref" translatable="false">blins-pos-pref</string>
+
+    <!-- BLINDS CONFIG -->
+    <string name="blinds_title">Blinds</string>
+    <string name="blind_added">Blind added</string>
+    <string name="blind_deleted">Blind deleted!</string>
+    <string name="iv_blind_small_desc">Small blind chip</string>
+    <string name="iv_blind_big_desc">Big blind chip</string>
+
+    <!-- TIMERS CONFIG -->
+    <string name="rise_title">Rise</string>
+    <string name="rebuy_title">Rebuy</string>
+    <string name="mm">M</string>
+    <string name="ss">S</string>
+    <string name="hh">H</string>
+
     <!-- SETTINGS -->
+    <string name="settings_title">Settings</string>
     <string name="general_pref_title">General</string>
     <string name="general_screen_key" translatable="false">general_screen_key</string>
     <string name="general_screen_text">Screen</string>
@@ -33,23 +52,10 @@
     <string name="summary_on_pref">On</string>
     <string name="summary_off_pref">Off</string>
 
-    <!-- TOASTS -->
-    <string name="reload_toast">Reset</string>
-    <string name="play_toast">Playing!</string>
-    <string name="pause_toast">Pause</string>
-    <string name="rise_done_toast">"Blinds risen: "</string>
-    <string name="rebuy_end_toast">Rebuy ended!</string>
-    <string name="blind_added">Blind added</string>
-    <string name="blind_deleted">Blind deleted!</string>
-
-    <!-- CONFIG -->
-    <string name="mm">M</string>
-    <string name="ss">S</string>
-    <string name="hh">H</string>
-
-    <!-- CONTENT DESCRIPTORS -->
-    <string name="iv_blind_small_desc">Small blind chip</string>
-    <string name="iv_blind_big_desc">Big blind chip</string>
-    <string name="iv_reload_desc">Reload button</string>
-    <string name="iv_play_pause_desc">Play/pause button</string>
+    <!-- ABOUT -->
+    <string name="about_title">About</string>
+    <string name="about_contact_title">Contact</string>
+    <string name="about_mail" translatable="false">choke84@gmail.com</string>
+    <string name="about_collaborate_title">Collaborate</string>
+    <string name="about_github" translatable="false">https://github.com/chokethenet/KillerDealer</string>
 </resources>
