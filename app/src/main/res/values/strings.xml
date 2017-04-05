@@ -42,6 +42,11 @@
     <string name="general_screen_text">Screen</string>
     <string name="summary_screen_on_pref">Keep screen on</string>
     <string name="summary_screen_off_pref">Don\'t keep screen on</string>
+    <string name="blinds_pref_title">Blinds</string>
+    <string name="blinds_reset_key" translatable="false">blinds_reset_key</string>
+    <string name="blinds_reset_text">Reset</string>
+    <string name="blinds_summary_reset_on_pref">Reset rise timer on blind navigation</string>
+    <string name="blinds_summary_reset_off_pref">Don\'t reset rise timer on blind navigation</string>
     <string name="notif_pref_title">Notifications</string>
     <string name="notif_vibrate_key" translatable="false">notif_vibrate_key</string>
     <string name="notif_vibrate_text">Vibrate</string>

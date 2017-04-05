@@ -32,4 +32,8 @@
     <string name="about_contact_title">Contacto</string>
     <string name="about_collaborate_title">Colaborar</string>
     <string name="about_mail_subject">Contacto desde KillerDealer</string>
+    <string name="blinds_pref_title">Ciegas</string>
+    <string name="blinds_reset_text">Reiniciar</string>
+    <string name="blinds_summary_reset_on_pref">Reiniciar el tiempo de subida al navegar las ciegas</string>
+    <string name="blinds_summary_reset_off_pref">No reiniciar el tiempo de subida al navegar las ciegas</string>
 </resources>

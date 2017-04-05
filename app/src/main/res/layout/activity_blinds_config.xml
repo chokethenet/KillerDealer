@@ -16,9 +16,9 @@
             style="@style/KillerDealer.Text.title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginStart="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/large"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/medium"
             android:text="@string/blinds_title" />
 
         <TextView
@@ -28,17 +28,17 @@
             style="@style/KillerDealer.Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large"
+            android:layout_marginLeft="@dimen/large"
+            android:layout_marginRight="@dimen/large"
             tools:text="5, 10, 25, 50, 100, 200, 400, 750, 1000, 1500, 2500, 5000, 10000, 25000, 50000, 100000, 200000, 400000, 750000, 1000000, 1500000, 2500000, ..." />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_blinds"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin_large"
-            android:layout_marginRight="@dimen/margin_large"
-            android:layout_marginTop="@dimen/margin_medium"/>
+            android:layout_marginLeft="@dimen/large"
+            android:layout_marginRight="@dimen/large"
+            android:layout_marginTop="@dimen/medium"/>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -48,7 +48,7 @@
         android:layout_gravity="bottom|end"
         android:clickable="true"
         app:fabSize="normal"
-        android:layout_margin="@dimen/margin_medium"
+        android:layout_margin="@dimen/medium"
         app:srcCompat="@drawable/ic_add" />
 
 </FrameLayout>

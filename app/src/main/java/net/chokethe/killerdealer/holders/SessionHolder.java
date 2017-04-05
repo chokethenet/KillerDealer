@@ -106,7 +106,7 @@ public class SessionHolder {
         setRiseTimeLeft(riseTimePref);
     }
 
-    private void resetRebuyTimeLeft() {
+    public void resetRebuyTimeLeft() {
         setRebuyTimeLeft(rebuyTimePref);
     }
 

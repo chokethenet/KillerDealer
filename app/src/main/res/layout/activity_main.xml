@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/medium"
         android:text="@string/blinds_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -23,9 +23,9 @@
     <ImageView
         android:id="@+id/iv_blind_small"
         style="@style/KillerDealer.Image.circle"
-        android:layout_marginLeft="@dimen/margin_extra_large"
-        android:layout_marginStart="@dimen/margin_extra_large"
-        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginLeft="@dimen/extra_large"
+        android:layout_marginStart="@dimen/extra_large"
+        android:layout_marginTop="@dimen/medium"
         android:contentDescription="@string/iv_blind_small_desc"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_blind_title"
@@ -36,7 +36,7 @@
         style="@style/KillerDealer.Text.number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
+        android:layout_margin="@dimen/small"
         app:layout_constraintBottom_toBottomOf="@+id/iv_blind_small"
         app:layout_constraintLeft_toLeftOf="@+id/iv_blind_small"
         app:layout_constraintRight_toRightOf="@+id/iv_blind_small"
@@ -44,24 +44,22 @@
         tools:text="10" />
 
     <ImageView
-        android:id="@+id/main_iv_blind_left"
+        android:id="@+id/main_iv_blind_prev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
-        android:layout_marginRight="@dimen/margin_small"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_blind_small"
-        app:layout_constraintRight_toLeftOf="@+id/tv_blind_small"
         app:layout_constraintTop_toTopOf="@+id/iv_blind_small"
         app:srcCompat="@drawable/ic_prev"
-        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/small"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <ImageView
         android:id="@+id/iv_blind_big"
         style="@style/KillerDealer.Image.circle"
-        android:layout_marginEnd="@dimen/margin_extra_large"
-        android:layout_marginRight="@dimen/margin_extra_large"
+        android:layout_marginEnd="@dimen/extra_large"
+        android:layout_marginRight="@dimen/extra_large"
         android:layout_marginTop="0dp"
         android:contentDescription="@string/iv_blind_big_desc"
         app:layout_constraintRight_toRightOf="parent"
@@ -73,7 +71,7 @@
         style="@style/KillerDealer.Text.number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_small"
+        android:layout_margin="@dimen/small"
         app:layout_constraintBottom_toBottomOf="@+id/iv_blind_big"
         app:layout_constraintLeft_toLeftOf="@+id/iv_blind_big"
         app:layout_constraintRight_toRightOf="@+id/iv_blind_big"
@@ -81,7 +79,7 @@
         tools:text="20" />
 
     <ImageView
-        android:id="@+id/main_iv_blind_right"
+        android:id="@+id/main_iv_blind_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
@@ -89,7 +87,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_blind_big"
         app:layout_constraintTop_toTopOf="@+id/iv_blind_big"
         app:srcCompat="@drawable/ic_next"
-        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginRight="@dimen/small"
         app:layout_constraintRight_toRightOf="parent" />
 
     <!-- RISE -->
@@ -98,9 +96,9 @@
         style="@style/KillerDealer.Text.title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_large"
-        android:layout_marginStart="@dimen/margin_large"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginLeft="@dimen/large"
+        android:layout_marginStart="@dimen/large"
+        android:layout_marginTop="@dimen/small"
         android:text="@string/rise_title"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_blind_small" />
@@ -117,6 +115,19 @@
         app:layout_constraintTop_toTopOf="@+id/tv_rise_title"
         tools:text="15:00" />
 
+    <ImageView
+        android:id="@+id/main_iv_rise_reload"
+        android:layout_width="@dimen/extra_large"
+        android:layout_height="@dimen/extra_large"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rise_timer"
+        app:layout_constraintLeft_toRightOf="@+id/tv_rise_timer"
+        app:layout_constraintTop_toTopOf="@+id/tv_rise_timer"
+        app:srcCompat="@drawable/ic_reload"
+        app:layout_constraintVertical_bias="0.523" />
+
     <!-- REBUY -->
     <TextView
         android:id="@+id/tv_rebuy_title"
@@ -125,7 +136,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/small"
         android:text="@string/rebuy_title"
         app:layout_constraintLeft_toLeftOf="@+id/tv_rise_timer"
         app:layout_constraintTop_toBottomOf="@+id/tv_rise_timer" />
@@ -142,14 +153,27 @@
         app:layout_constraintTop_toTopOf="@+id/tv_rebuy_title"
         tools:text="2:00:00" />
 
+    <ImageView
+        android:id="@+id/main_iv_rebuy_reload"
+        android:layout_width="@dimen/extra_large"
+        android:layout_height="@dimen/extra_large"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rebuy_timer"
+        app:layout_constraintLeft_toRightOf="@+id/tv_rebuy_timer"
+        app:layout_constraintTop_toTopOf="@+id/tv_rebuy_timer"
+        app:srcCompat="@drawable/ic_reload"
+        app:layout_constraintVertical_bias="0.523" />
+
     <!-- CONTROLS -->
     <ImageView
         android:id="@+id/iv_reload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_medium"
-        android:layout_marginLeft="@dimen/margin_large"
-        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_marginLeft="@dimen/large"
+        android:layout_marginStart="@dimen/large"
         android:contentDescription="@string/iv_reload_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -159,9 +183,9 @@
         android:id="@+id/iv_play_pause"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_medium"
-        android:layout_marginEnd="@dimen/margin_large"
-        android:layout_marginRight="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/medium"
+        android:layout_marginEnd="@dimen/large"
+        android:layout_marginRight="@dimen/large"
         android:contentDescription="@string/iv_play_pause_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

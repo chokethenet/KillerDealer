@@ -22,6 +22,7 @@ public class PreferencesUtils {
     private static final int DEFAULT_BLINDS_POS = 0;
     private static final int DEFAULT_MULTIPLIER = 10;
     private static final int MAX_BLIND = 99999999;
+    public static final boolean DEFAULT_RISE_RESET = false;
     public static final boolean DEFAULT_SCREEN_ON = false;
     public static final boolean DEFAULT_VIBRATE_ON = true;
     public static final boolean DEFAULT_SOUND_ON = true;
@@ -195,6 +196,10 @@ public class PreferencesUtils {
 
     public static void setBlindPos(Context context, int pos) {
         setIntValue(context, R.string.blind_pos_pref, pos);
+    }
+
+    public static boolean isRiseReset(Context context) {
+        return getBoolValue(context, R.string.blinds_reset_key, DEFAULT_RISE_RESET);
     }
 
     public static boolean isScreenLocked(Context context) {

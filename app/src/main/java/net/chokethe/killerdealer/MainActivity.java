@@ -57,12 +57,14 @@ public class MainActivity extends AppCompatActivity
         mRebuyTimerTextView = (TextView) findViewById(R.id.tv_rebuy_timer);
         mPlayPauseView = (ImageView) findViewById(R.id.iv_play_pause);
 
-        findViewById(R.id.main_iv_blind_left).setOnClickListener(this);
-        findViewById(R.id.main_iv_blind_right).setOnClickListener(this);
+        findViewById(R.id.main_iv_blind_prev).setOnClickListener(this);
+        findViewById(R.id.main_iv_blind_next).setOnClickListener(this);
         mSmallBlindTextView.setOnClickListener(this);
         mBigBlindTextView.setOnClickListener(this);
         mRiseTimerTextView.setOnClickListener(this);
         mRebuyTimerTextView.setOnClickListener(this);
+        findViewById(R.id.main_iv_rise_reload).setOnClickListener(this);
+        findViewById(R.id.main_iv_rebuy_reload).setOnClickListener(this);
         findViewById(R.id.iv_reload).setOnClickListener(this);
         mPlayPauseView.setOnClickListener(this);
     }
@@ -150,13 +152,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.main_iv_blind_left:
-                mSessionHolder.setPrevBlindPos();
-                updateBlindsUI();
+            case R.id.main_iv_blind_prev:
+                setPrevBlindOnClick();
                 break;
-            case R.id.main_iv_blind_right:
-                mSessionHolder.setNextBlindPos();
-                updateBlindsUI();
+            case R.id.main_iv_blind_next:
+                setNextBlindOnClick();
                 break;
             case R.id.tv_blind_small:
             case R.id.tv_blind_big:
@@ -165,6 +165,12 @@ public class MainActivity extends AppCompatActivity
             case R.id.tv_rise_timer:
             case R.id.tv_rebuy_timer:
                 configOnClick(TimersConfigActivity.class);
+                break;
+            case R.id.main_iv_rise_reload:
+                reloadRiseOnClick();
+                break;
+            case R.id.main_iv_rebuy_reload:
+                reloadRebuyOnClick();
                 break;
             case R.id.iv_reload:
                 reloadOnClick();
@@ -175,9 +181,43 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void setPrevBlindOnClick() {
+        mSessionHolder.setPrevBlindPos();
+        setBlindAndTimer();
+    }
+
+    private void setNextBlindOnClick() {
+        mSessionHolder.setNextBlindPos();
+        setBlindAndTimer();
+    }
+
+    private void setBlindAndTimer() {
+        if (mSettingsHolder.isRiseReset()) {
+            mSessionHolder.resetRiseTimeLeft();
+            reloadTimers();
+        }
+        updateBlindsUI();
+    }
+
     private void configOnClick(Class activityClass) {
         Intent configActivityIntent = new Intent(this, activityClass);
         startActivity(configActivityIntent);
+    }
+
+    private void reloadRiseOnClick() {
+        mSessionHolder.resetRiseTimeLeft();
+        reloadTimers();
+    }
+
+    private void reloadRebuyOnClick() {
+        mSessionHolder.resetRebuyTimeLeft();
+        reloadTimers();
+    }
+
+    private void reloadTimers() {
+        cancelTimers();
+        handleTimers();
+        updateTimersUI();
     }
 
     private void reloadOnClick() {
@@ -190,20 +230,20 @@ public class MainActivity extends AppCompatActivity
     private void playPauseOnClick() {
         if (!mSessionHolder.isPlaying()) {
             mSessionHolder.setPlaying();
+            CommonUtils.showToast(this, getString(R.string.play_toast));
         } else {
             mSessionHolder.setPaused();
+            CommonUtils.showToast(this, getString(R.string.pause_toast));
         }
         handleTimers();
     }
 
     private void handleTimers() {
         if (mSessionHolder.isPlaying()) {
-            CommonUtils.showToast(this, getString(R.string.play_toast));
             updatePlayPauseUI();
             mRiseTimer = createAndStartRiseTimer(mSessionHolder.getRiseTimeLeft());
             mRebuyTimer = createAndStartRebuyTimer();
         } else if (mSessionHolder.isPaused()) {
-            CommonUtils.showToast(this, getString(R.string.pause_toast));
             updatePlayPauseUI();
             cancelTimers();
         }

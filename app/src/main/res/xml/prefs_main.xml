@@ -8,6 +8,14 @@
             android:summaryOff="@string/summary_screen_off_pref"
             android:title="@string/general_screen_text" />
     </PreferenceCategory>
+    <PreferenceCategory android:title="@string/blinds_pref_title">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="blinds_reset_key"
+            android:summaryOn="@string/blinds_summary_reset_on_pref"
+            android:summaryOff="@string/blinds_summary_reset_off_pref"
+            android:title="@string/blinds_reset_text" />
+    </PreferenceCategory>
     <PreferenceCategory android:title="@string/notif_pref_title">
         <CheckBoxPreference
             android:defaultValue="true"
