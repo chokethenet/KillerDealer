@@ -11,6 +11,8 @@
         android:focusableInTouchMode="true"
         android:id="@+id/tv_rise_config"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_large"
         android:layout_marginStart="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_medium"
@@ -31,6 +33,8 @@
     <TextView
         android:id="@+id/tv_rise_mm"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginRight="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin_small"
@@ -55,6 +59,8 @@
     <TextView
         android:id="@+id/tv_rise_ss"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginRight="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
@@ -67,6 +73,8 @@
     <TextView
         android:id="@+id/tv_rebuy_config"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="@dimen/margin_medium"
@@ -87,6 +95,8 @@
     <TextView
         android:id="@+id/tv_rebuy_hh"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginRight="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin_small"
@@ -111,6 +121,8 @@
     <TextView
         android:id="@+id/tv_rebuy_mm"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginRight="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin_small"
@@ -135,6 +147,8 @@
     <TextView
         android:id="@+id/tv_rebuy_ss"
         style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginRight="@dimen/margin_large"
         android:layout_marginEnd="@dimen/margin_large"
