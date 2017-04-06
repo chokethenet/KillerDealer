@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void updateBlindsUI() {
-        BlindsConfigActivity.setBlindTextWithAdaptableSize(mSmallBlindTextView, mSessionHolder.getSmallBlind());
-        BlindsConfigActivity.setBlindTextWithAdaptableSize(mBigBlindTextView, mSessionHolder.getBigBlind());
+        ConfigActivity.setBlindTextWithAdaptableSize(mSmallBlindTextView, mSessionHolder.getSmallBlind(), false);
+        ConfigActivity.setBlindTextWithAdaptableSize(mBigBlindTextView, mSessionHolder.getBigBlind(), false);
     }
 
     private void updateTimersUI() {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.tv_blind_small:
             case R.id.tv_blind_big:
-                configOnClick(BlindsConfigActivity.class);
+                configOnClick(ConfigActivity.class);
                 break;
             case R.id.tv_rise_timer:
             case R.id.tv_rebuy_timer:
