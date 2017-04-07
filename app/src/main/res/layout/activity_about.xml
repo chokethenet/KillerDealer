@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,111 +11,111 @@
     android:paddingTop="@dimen/medium"
     tools:context="net.chokethe.killerdealer.about.AboutActivity">
 
-    <ScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/about_iv_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/about_logo_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher" />
 
-            <ImageView
-                android:id="@+id/about_iv_app"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher" />
+        <TextView
+            android:id="@+id/about_tv_about_title"
+            style="@style/KillerDealer.Text.title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/medium"
+            android:layout_marginStart="@dimen/medium"
+            android:layout_marginTop="0dp"
+            android:text="@string/about_title"
+            app:layout_constraintLeft_toRightOf="@+id/about_iv_app"
+            app:layout_constraintTop_toTopOf="@+id/about_iv_app" />
 
-            <TextView
-                android:id="@+id/about_tv_about_title"
-                style="@style/KillerDealer.Text.title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/medium"
-                android:layout_marginTop="0dp"
-                android:text="@string/about_title"
-                app:layout_constraintLeft_toRightOf="@+id/about_iv_app"
-                app:layout_constraintTop_toTopOf="@+id/about_iv_app" />
+        <TextView
+            android:id="@+id/about_tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_about_title"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_about_title" />
 
-            <TextView
-                android:id="@+id/about_tv_app_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_about_title"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_about_title" />
+        <TextView
+            android:id="@+id/about_tv_version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_app_name"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_app_name"
+            tools:text="v2.1.7" />
 
-            <TextView
-                android:id="@+id/about_tv_version_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_app_name"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_app_name"
-                tools:text="v2.1.7" />
+        <TextView
+            android:id="@+id/about_tv_since"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_version_name"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_version_name"
+            tools:text="2017-04-05" />
 
-            <TextView
-                android:id="@+id/about_tv_since"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_version_name"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_version_name"
-                tools:text="2017-04-05" />
+        <ImageView
+            android:id="@+id/about_iv_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/about_mail_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/about_tv_contact_title"
+            app:srcCompat="@mipmap/ic_mail" />
 
-            <ImageView
-                android:id="@+id/about_iv_mail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/about_tv_contact_title"
-                app:srcCompat="@mipmap/ic_mail" />
+        <TextView
+            android:id="@+id/about_tv_contact_title"
+            style="@style/KillerDealer.Text.title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large"
+            android:text="@string/about_contact_title"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_since"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_since" />
 
-            <TextView
-                android:id="@+id/about_tv_contact_title"
-                style="@style/KillerDealer.Text.title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large"
-                android:text="@string/about_contact_title"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_since"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_since" />
+        <TextView
+            android:id="@+id/about_tv_mail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_mail_to"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_contact_title"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_contact_title" />
 
-            <TextView
-                android:id="@+id/about_tv_mail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/about_mail_to"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_contact_title"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_contact_title" />
+        <ImageView
+            android:id="@+id/about_iv_github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:contentDescription="@string/about_github_desc"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/about_tv_collaborate_title"
+            app:srcCompat="@mipmap/ic_github" />
 
-            <ImageView
-                android:id="@+id/about_iv_github"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="0dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/about_tv_collaborate_title"
-                app:srcCompat="@mipmap/ic_github" />
+        <TextView
+            android:id="@+id/about_tv_collaborate_title"
+            style="@style/KillerDealer.Text.title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large"
+            android:text="@string/about_collaborate_title"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_mail"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_mail" />
 
-            <TextView
-                android:id="@+id/about_tv_collaborate_title"
-                style="@style/KillerDealer.Text.title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large"
-                android:text="@string/about_collaborate_title"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_mail"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_mail" />
+        <TextView
+            android:id="@+id/about_tv_github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_github"
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_collaborate_title"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_collaborate_title" />
 
-            <TextView
-                android:id="@+id/about_tv_github"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/about_github"
-                app:layout_constraintLeft_toLeftOf="@+id/about_tv_collaborate_title"
-                app:layout_constraintTop_toBottomOf="@+id/about_tv_collaborate_title" />
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-</LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

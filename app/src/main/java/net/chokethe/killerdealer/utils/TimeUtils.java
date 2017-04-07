@@ -30,6 +30,16 @@ public class TimeUtils {
         }
     }
 
+    public static String getStringHours(long millis) {
+        return String.valueOf(getHours(millis));
+    }
+
+    public static String getStringMins(long millis) {
+        int minutes = getMins(millis);
+        return (String.valueOf(minutes).length() == 1 ? "0" + minutes : String.valueOf(minutes));
+    }
+
+
     public static int getHours(long millis) {
         return (int) (millis / HOURS_IN_MILLIS);
     }

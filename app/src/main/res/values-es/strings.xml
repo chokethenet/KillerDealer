@@ -40,4 +40,7 @@
     <string name="dialog_cancel">Cancelar</string>
     <string name="dialog_add_title">Añadir</string>
     <string name="dialog_update_title">Modificar</string>
+    <string name="about_logo_desc">Logo de la aplicación</string>
+    <string name="about_mail_desc">Logo de correo electronico</string>
+    <string name="about_github_desc">Logo de GitHub</string>
 </resources>

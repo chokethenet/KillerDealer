@@ -3,28 +3,18 @@ package net.chokethe.killerdealer;
 import android.content.Context;
 
 import net.chokethe.killerdealer.utils.PreferencesUtils;
+import net.chokethe.killerdealer.utils.TimeUtils;
 
-public class TimersConfigHolder {
+public class RebuyTimerConfigHolder {
 
-    private long riseTimePref;
     private long rebuyTimePref;
 
-    public TimersConfigHolder(Context context) {
-        riseTimePref = PreferencesUtils.getRiseTime(context);
+    public RebuyTimerConfigHolder(Context context) {
         rebuyTimePref = PreferencesUtils.getRebuyTime(context);
     }
 
     public void save(Context context) {
-        PreferencesUtils.setRiseTime(context, riseTimePref);
         PreferencesUtils.setRebuyTime(context, rebuyTimePref);
-    }
-
-    public long getRiseTimePref() {
-        return riseTimePref;
-    }
-
-    public void setRiseTimePref(long riseTimePref) {
-        this.riseTimePref = riseTimePref;
     }
 
     public long getRebuyTimePref() {
@@ -33,5 +23,13 @@ public class TimersConfigHolder {
 
     public void setRebuyTimePref(long rebuyTimePref) {
         this.rebuyTimePref = rebuyTimePref;
+    }
+
+    public String getRebuyHours() {
+        return TimeUtils.getStringHours(rebuyTimePref);
+    }
+
+    public String getRebuyMinutes() {
+        return TimeUtils.getStringMins(rebuyTimePref);
     }
 }

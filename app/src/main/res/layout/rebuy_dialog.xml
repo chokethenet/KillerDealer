@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/small">
+
+    <NumberPicker
+        android:id="@+id/config_tv_rebuy_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/small"
+        android:layout_marginEnd="@dimen/small"
+        android:layout_marginTop="0dp"
+        app:layout_constraintRight_toLeftOf="@+id/config_tv_rebuy_hh"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/config_tv_rebuy_hh"
+        style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="@dimen/x_small"
+        android:layout_marginEnd="@dimen/x_small"
+        android:layout_marginTop="0dp"
+        android:text="@string/hh"
+        app:layout_constraintBottom_toBottomOf="@+id/config_tv_rebuy_hours"
+        app:layout_constraintRight_toLeftOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/config_tv_rebuy_hours" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <NumberPicker
+        android:id="@+id/config_tv_rebuy_minutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/x_small"
+        android:layout_marginStart="@dimen/x_small"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/config_tv_rebuy_hh"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/config_tv_rebuy_hh" />
+
+    <TextView
+        android:id="@+id/config_tv_rebuy_mm"
+        style="@style/KillerDealer.Text.title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="@dimen/small"
+        android:layout_marginStart="@dimen/small"
+        android:layout_marginTop="0dp"
+        android:text="@string/mm"
+        app:layout_constraintBottom_toBottomOf="@+id/config_tv_rebuy_minutes"
+        app:layout_constraintLeft_toRightOf="@+id/config_tv_rebuy_minutes"
+        app:layout_constraintTop_toTopOf="@+id/config_tv_rebuy_minutes" />
+
+</android.support.constraint.ConstraintLayout>

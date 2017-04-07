@@ -68,4 +68,7 @@
     <string name="about_mail_subject">Contact from KillerDealer</string>
     <string name="about_collaborate_title">Collaborate</string>
     <string name="about_github" translatable="false">https://github.com/chokethenet/KillerDealer</string>
+    <string name="about_logo_desc">App logo</string>
+    <string name="about_mail_desc">e-mail logo</string>
+    <string name="about_github_desc">GitHub logo</string>
 </resources>

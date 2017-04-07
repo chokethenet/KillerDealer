@@ -87,15 +87,16 @@ public class BlindDialogHelper {
     private static View inflateBlindDialogView(BlindsAdapter.BlindViewHolder blindViewHolder, Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View blindDialogView = inflater.inflate(R.layout.blind_dialog, null);
-        EditText smallBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_tv_blind_small);
-        EditText bigBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_tv_blind_big);
         NumberPicker riseTimeNumberPicker = (NumberPicker) blindDialogView.findViewById(R.id.blind_dialog_tv_rise_time);
         riseTimeNumberPicker.setMinValue(0);
         riseTimeNumberPicker.setMaxValue(99);
         if (blindViewHolder != null) {
+            riseTimeNumberPicker.setValue(Integer.parseInt(blindViewHolder.mRiseTime.getText().toString()));
+
+            EditText smallBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_tv_blind_small);
+            EditText bigBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_tv_blind_big);
             smallBlindEditText.setText(blindViewHolder.mSmallBlind.getText());
             bigBlindEditText.setText(blindViewHolder.mBigBlind.getText());
-            riseTimeNumberPicker.setValue(Integer.parseInt(blindViewHolder.mRiseTime.getText().toString()));
         }
         return blindDialogView;
     }

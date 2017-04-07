@@ -160,12 +160,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.tv_blind_small:
             case R.id.tv_blind_big:
-                configOnClick(ConfigActivity.class);
-                break;
-            // FIXME: all go to ConfigActivity
             case R.id.tv_rise_timer:
             case R.id.tv_rebuy_timer:
-                configOnClick(TimersConfigActivity.class);
+                configOnClick(ConfigActivity.class);
                 break;
             case R.id.main_iv_rise_reload:
                 reloadRiseOnClick();

@@ -10,10 +10,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.R;
+import net.chokethe.killerdealer.RebuyTimerConfigHolder;
 import net.chokethe.killerdealer.db.KillerDealerDbHelper;
 import net.chokethe.killerdealer.utils.CommonUtils;
 
-public class ConfigActivity extends AppCompatActivity {
+public class ConfigActivity extends AppCompatActivity implements View.OnClickListener {
 
     private BlindsAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -26,7 +27,9 @@ public class ConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
-        final FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.fab);
+        RebuyTimerConfigHolder rebuyTimerConfigHolder = new RebuyTimerConfigHolder(this);
+
+        final FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.config_fab);
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,9 +37,18 @@ public class ConfigActivity extends AppCompatActivity {
             }
         });
 
+        TextView hours = (TextView) findViewById(R.id.config_tv_rebuy_hours);
+        hours.setText(rebuyTimerConfigHolder.getRebuyHours());
+        hours.setOnClickListener(this);
+        findViewById(R.id.config_tv_rebuy_hh).setOnClickListener(this);
+        TextView minutes = (TextView) findViewById(R.id.config_tv_rebuy_minutes);
+        minutes.setText(rebuyTimerConfigHolder.getRebuyMinutes());
+        minutes.setOnClickListener(this);
+        findViewById(R.id.config_tv_rebuy_mm).setOnClickListener(this);
+
         mKillerDealerDbHelper = new KillerDealerDbHelper(this);
         mAdapter = new BlindsAdapter(this, mKillerDealerDbHelper);
-        mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
+        mRecyclerView = (RecyclerView) findViewById(R.id.config_rv_blinds);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
@@ -54,6 +66,18 @@ public class ConfigActivity extends AppCompatActivity {
                 CommonUtils.showToast(ConfigActivity.this, getString(R.string.blind_deleted));
             }
         }).attachToRecyclerView(mRecyclerView);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.config_tv_rebuy_hours:
+            case R.id.config_tv_rebuy_hh:
+            case R.id.config_tv_rebuy_minutes:
+            case R.id.config_tv_rebuy_mm:
+                RebuyDialogHelper.show(this);
+                break;
+        }
     }
 
     public static void setBlindTextWithAdaptableSize(TextView textView, int value, boolean isConfig) {

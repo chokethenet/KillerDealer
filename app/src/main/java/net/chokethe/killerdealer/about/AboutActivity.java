@@ -35,7 +35,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
             versionNameTextView.setText("v" + pInfo.versionName);
 
             TextView sinceTextView = (TextView) findViewById(R.id.about_tv_since);
-            SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
             sinceTextView.setText(dt.format(new Date(pInfo.lastUpdateTime)));
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
