@@ -19,15 +19,14 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     private BlindsAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private KillerDealerDbHelper mKillerDealerDbHelper;
-
-    // TODO: missing rebuy timer layout and dialog
+    private RebuyTimerConfigHolder mRebuyTimerConfigHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
-        RebuyTimerConfigHolder rebuyTimerConfigHolder = new RebuyTimerConfigHolder(this);
+        mRebuyTimerConfigHolder = new RebuyTimerConfigHolder(this);
 
         final FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.config_fab);
         fabButton.setOnClickListener(new View.OnClickListener() {
@@ -38,11 +37,11 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         });
 
         TextView hours = (TextView) findViewById(R.id.config_tv_rebuy_hours);
-        hours.setText(rebuyTimerConfigHolder.getRebuyHours());
+        hours.setText(mRebuyTimerConfigHolder.getRebuyStringHours());
         hours.setOnClickListener(this);
         findViewById(R.id.config_tv_rebuy_hh).setOnClickListener(this);
         TextView minutes = (TextView) findViewById(R.id.config_tv_rebuy_minutes);
-        minutes.setText(rebuyTimerConfigHolder.getRebuyMinutes());
+        minutes.setText(mRebuyTimerConfigHolder.getRebuyStringMinutes());
         minutes.setOnClickListener(this);
         findViewById(R.id.config_tv_rebuy_mm).setOnClickListener(this);
 
@@ -75,7 +74,7 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.config_tv_rebuy_hh:
             case R.id.config_tv_rebuy_minutes:
             case R.id.config_tv_rebuy_mm:
-                RebuyDialogHelper.show(this);
+                RebuyDialogHelper.show(this, mRebuyTimerConfigHolder);
                 break;
         }
     }

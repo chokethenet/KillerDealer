@@ -13,23 +13,23 @@ public class RebuyTimerConfigHolder {
         rebuyTimePref = PreferencesUtils.getRebuyTime(context);
     }
 
-    public void save(Context context) {
+    public void saveRebuyTimePref(Context context, int hours, int minutes) {
+        this.rebuyTimePref = TimeUtils.getMinsInMillis(minutes) + TimeUtils.getHoursInMillis(hours);
         PreferencesUtils.setRebuyTime(context, rebuyTimePref);
     }
 
-    public long getRebuyTimePref() {
-        return rebuyTimePref;
-    }
-
-    public void setRebuyTimePref(long rebuyTimePref) {
-        this.rebuyTimePref = rebuyTimePref;
-    }
-
-    public String getRebuyHours() {
+    public String getRebuyStringHours() {
         return TimeUtils.getStringHours(rebuyTimePref);
     }
 
-    public String getRebuyMinutes() {
+    public int getRebuyHours() {
+        return TimeUtils.getHours(rebuyTimePref);
+    }
+
+    public String getRebuyStringMinutes() {
         return TimeUtils.getStringMins(rebuyTimePref);
+    }
+    public int getRebuyMinutes() {
+        return TimeUtils.getMins(rebuyTimePref);
     }
 }
