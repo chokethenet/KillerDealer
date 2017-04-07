@@ -1,6 +1,5 @@
-package net.chokethe.killerdealer;
+package net.chokethe.killerdealer.config;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,19 +7,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
-import net.chokethe.killerdealer.adapters.BlindsAdapter;
+import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.db.KillerDealerDbHelper;
-import net.chokethe.killerdealer.holders.BlindsConfigHolder;
 
 public class ConfigActivity extends AppCompatActivity {
 
-    private TextView mBlindResult;
-
-    private BlindsConfigHolder mBlindsConfigHolder;
     private BlindsAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private KillerDealerDbHelper mKillerDealerDbHelper;
     private Cursor mBlindsCursor;
+
+    // TODO: missing rebuy timer layout and dialog
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +29,7 @@ public class ConfigActivity extends AppCompatActivity {
 //            @Override
 //            public void onClick(View view) {
 ////                Collections.sort(mAdapter.getBlinds());
+        // TODO: db.insert -> update cursor
 ////                mAdapter.getBlinds().add(0);
 //                mAdapter.notifyDataSetChanged();
 //
@@ -54,7 +52,6 @@ public class ConfigActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mBlindsConfigHolder = new BlindsConfigHolder(this);
         updateUI();
     }
 
@@ -62,7 +59,6 @@ public class ConfigActivity extends AppCompatActivity {
         mAdapter = new BlindsAdapter(this, mBlindsCursor);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)); // FIXME: for future builds with small-big blinds and rise time individually
         mRecyclerView.setAdapter(mAdapter);
 
 //        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -74,6 +70,7 @@ public class ConfigActivity extends AppCompatActivity {
 //            @Override
 //            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
 //                Integer blind = (Integer) viewHolder.itemView.getTag();
+        // TODO: db.delete -> update cursor
 ////                mAdapter.getBlinds().remove(blind);
 ////                if (mAdapter.getBlinds().isEmpty()) {
 ////                    mAdapter.getBlinds().add(0);
@@ -92,8 +89,6 @@ public class ConfigActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        mBlindsConfigHolder.setBlindsListPref(mAdapter.getBlinds());
-        mBlindsConfigHolder.save(this);
     }
 
     public static void setBlindTextWithAdaptableSize(TextView textView, int value, boolean isConfig) {
@@ -102,7 +97,7 @@ public class ConfigActivity extends AppCompatActivity {
     }
 
 //    public static void adaptBlindSize(TextView textView) {
-//        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())));
+//        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())), true);
 //    }
 
     private static void setBlindAdaptableSize(TextView textView, int value, boolean isConfig) {

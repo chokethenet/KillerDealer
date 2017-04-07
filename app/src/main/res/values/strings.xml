@@ -27,13 +27,15 @@
     <string name="blind_deleted">Blind deleted!</string>
     <string name="iv_blind_small_desc">Small blind chip</string>
     <string name="iv_blind_big_desc">Big blind chip</string>
+    <string name="hh">H</string>
+    <string name="mm">M</string>
+    <string name="dialog_save">Save</string>
+    <string name="dialog_cancel">Cancel</string>
 
     <!-- TIMERS CONFIG -->
     <string name="rise_title">Rise</string>
     <string name="rebuy_title">Rebuy</string>
-    <string name="mm">M</string>
     <string name="ss">S</string>
-    <string name="hh">H</string>
 
     <!-- SETTINGS -->
     <string name="settings_title">Settings</string>

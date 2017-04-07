@@ -1,4 +1,4 @@
-package net.chokethe.killerdealer.holders;
+package net.chokethe.killerdealer;
 
 import android.content.Context;
 

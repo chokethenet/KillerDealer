@@ -6,7 +6,7 @@ import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
 import net.chokethe.killerdealer.R;
-import net.chokethe.killerdealer.holders.SessionHolder;
+import net.chokethe.killerdealer.SessionHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;

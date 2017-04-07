@@ -36,4 +36,6 @@
     <string name="blinds_reset_text">Reiniciar</string>
     <string name="blinds_summary_reset_on_pref">Reiniciar el tiempo de subida al navegar las ciegas</string>
     <string name="blinds_summary_reset_off_pref">No reiniciar el tiempo de subida al navegar las ciegas</string>
+    <string name="dialog_save">Guardar</string>
+    <string name="dialog_cancel">Cancelar</string>
 </resources>

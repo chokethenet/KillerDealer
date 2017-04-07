@@ -1,4 +1,4 @@
-package net.chokethe.killerdealer.adapters;
+package net.chokethe.killerdealer.config;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -6,17 +6,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import net.chokethe.killerdealer.ConfigActivity;
 import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.db.BlindsContract;
 
 public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> {
     private Context mContext;
     private Cursor mCursor;
-//    private List<Integer> mBlinds;
 
     public BlindsAdapter(Context context, Cursor cursor) {
         mContext = context;
@@ -49,8 +46,6 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         ConfigActivity.setBlindTextWithAdaptableSize(holder.mSmallBlind, smallBlind, true);
         ConfigActivity.setBlindTextWithAdaptableSize(holder.mBigBlind, bigBlind, true);
         holder.mRiseTime.setText(String.valueOf(riseTime));
-////        holder.mBlindEditTextListener.updatePosition(position);
-//        ConfigActivity.setBlindTextWithAdaptableSize(holder.mBlind, blind, true);
     }
 
     @Override
@@ -58,52 +53,29 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         return mCursor.getCount();
     }
 
-    class BlindViewHolder extends RecyclerView.ViewHolder {
+    class BlindViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         long id;
         TextView mSmallBlind;
         TextView mBigBlind;
         TextView mRiseTime;
-//        BlindEditTextListener mBlindEditTextListener;
 
         BlindViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mSmallBlind = (TextView) itemView.findViewById(R.id.blind_tv_blind_small);
             mBigBlind = (TextView) itemView.findViewById(R.id.blind_tv_blind_big);
             mRiseTime = (TextView) itemView.findViewById(R.id.blind_tv_rise_time);
-//            BlindEditTextListener blindEditTextListener = new BlindEditTextListener(mBlind);
-//            mBlindEditTextListener = blindEditTextListener;
-//            mBlind.addTextChangedListener(blindEditTextListener);
+        }
+
+        @Override
+        public void onClick(View v) {
+            popBlindsDialog();
+        }
+
+        private void popBlindsDialog() {
+            BlindDialogHelper.showUpdate(mContext, this);
+            // TODO: update the cursor
+            notifyDataSetChanged();
         }
     }
-
-//    private class BlindEditTextListener implements TextWatcher {
-//        private int position;
-//        private EditText mBlind;
-//
-//        public BlindEditTextListener(EditText blind) {
-//            mBlind = blind;
-//        }
-//
-//        void updatePosition(int position) {
-//            this.position = position;
-//        }
-//
-//        @Override
-//        public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-//        }
-//
-//        @Override
-//        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-//            String input = charSequence.toString();
-//            if (!"".equals(input)) {
-//                mBlinds.set(position, Integer.valueOf(input));
-//            }
-//        }
-//
-//        @Override
-//        public void afterTextChanged(Editable editable) {
-//            ConfigActivity.adaptBlindSize(mBlind);
-//            ConfigActivity.updateResultUI(mContext);
-//        }
-//    }
 }

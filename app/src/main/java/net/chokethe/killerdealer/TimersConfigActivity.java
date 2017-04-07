@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.NumberPicker;
 
-import net.chokethe.killerdealer.holders.TimersConfigHolder;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
 public class TimersConfigActivity extends AppCompatActivity {

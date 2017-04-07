@@ -1,4 +1,4 @@
-package net.chokethe.killerdealer.holders;
+package net.chokethe.killerdealer.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -30,13 +30,22 @@ public class KillerDealerDbHelper extends SQLiteOpenHelper {
         return BlindsContract.selectAll(db);
     }
 
-    public void updateBlind(ContentValues contentValues) {
+    public void updateBlind(long id, int smallBlind, int bigBlind, int riseTime) {
         SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(BlindsContract.BlindsEntry._ID, id);
+        contentValues.put(BlindsContract.BlindsEntry.COLUMN_SMALL_BLIND, smallBlind);
+        contentValues.put(BlindsContract.BlindsEntry.COLUMN_BIG_BLIND, bigBlind);
+        contentValues.put(BlindsContract.BlindsEntry.COLUMN_RISE_TIME, riseTime);
         BlindsContract.update(db, contentValues);
     }
 
-    public void insertBlind(ContentValues contentValues) {
+    public void insertBlind(int smallBlind, int bigBlind, int riseTime) {
         SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(BlindsContract.BlindsEntry.COLUMN_SMALL_BLIND, smallBlind);
+        contentValues.put(BlindsContract.BlindsEntry.COLUMN_BIG_BLIND, bigBlind);
+        contentValues.put(BlindsContract.BlindsEntry.COLUMN_RISE_TIME, riseTime);
         BlindsContract.insert(db, contentValues);
     }
 

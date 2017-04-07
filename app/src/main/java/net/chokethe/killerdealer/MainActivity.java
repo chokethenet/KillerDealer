@@ -22,10 +22,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.about.AboutActivity;
-import net.chokethe.killerdealer.holders.SessionHolder;
-import net.chokethe.killerdealer.holders.SettingsHolder;
+import net.chokethe.killerdealer.config.ConfigActivity;
 import net.chokethe.killerdealer.notifications.NotificationUtils;
 import net.chokethe.killerdealer.settings.SettingsActivity;
+import net.chokethe.killerdealer.settings.SettingsHolder;
 import net.chokethe.killerdealer.utils.CommonUtils;
 import net.chokethe.killerdealer.utils.TimeUtils;
 
@@ -162,6 +162,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.tv_blind_big:
                 configOnClick(ConfigActivity.class);
                 break;
+            // FIXME: all go to ConfigActivity
             case R.id.tv_rise_timer:
             case R.id.tv_rebuy_timer:
                 configOnClick(TimersConfigActivity.class);
@@ -183,20 +184,20 @@ public class MainActivity extends AppCompatActivity
 
     private void setPrevBlindOnClick() {
         mSessionHolder.setPrevBlindPos();
-        setBlindAndTimer();
+        updateBlindsAndTimers();
     }
 
     private void setNextBlindOnClick() {
         mSessionHolder.setNextBlindPos();
-        setBlindAndTimer();
+        updateBlindsAndTimers();
     }
 
-    private void setBlindAndTimer() {
+    private void updateBlindsAndTimers() {
+        updateBlindsUI();
         if (mSettingsHolder.isRiseReset()) {
             mSessionHolder.resetRiseTimeLeft();
             reloadTimers();
         }
-        updateBlindsUI();
     }
 
     private void configOnClick(Class activityClass) {

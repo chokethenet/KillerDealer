@@ -5,7 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
-import net.chokethe.killerdealer.holders.SessionHolder;
+import net.chokethe.killerdealer.SessionHolder;
 
 public class NotificationUtils {
     public static void scheduleNotifications(Context context, long now) {

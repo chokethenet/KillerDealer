@@ -12,8 +12,8 @@ import android.support.v4.content.ContextCompat;
 
 import net.chokethe.killerdealer.MainActivity;
 import net.chokethe.killerdealer.R;
-import net.chokethe.killerdealer.holders.SessionHolder;
-import net.chokethe.killerdealer.holders.SettingsHolder;
+import net.chokethe.killerdealer.SessionHolder;
+import net.chokethe.killerdealer.settings.SettingsHolder;
 
 public class NotificationPublisher extends BroadcastReceiver {
 
