@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.R;
-import net.chokethe.killerdealer.RebuyTimerConfigHolder;
+import net.chokethe.killerdealer.config.blinds.BlindDialogHelper;
+import net.chokethe.killerdealer.config.blinds.BlindsAdapter;
+import net.chokethe.killerdealer.config.rebuy.RebuyDialogHelper;
+import net.chokethe.killerdealer.config.rebuy.RebuyTimerConfigHolder;
 import net.chokethe.killerdealer.db.KillerDealerDbHelper;
 import net.chokethe.killerdealer.utils.CommonUtils;
 

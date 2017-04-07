@@ -1,4 +1,4 @@
-package net.chokethe.killerdealer.config;
+package net.chokethe.killerdealer.config.blinds;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -19,7 +19,7 @@ public class BlindDialogHelper {
     private BlindDialogHelper() {
     }
 
-    static void showInsert(final Context context, final RecyclerView recyclerView, final KillerDealerDbHelper db) {
+    public static void showInsert(final Context context, final RecyclerView recyclerView, final KillerDealerDbHelper db) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View blindDialogView = inflateBlindDialogView(null, context);
 

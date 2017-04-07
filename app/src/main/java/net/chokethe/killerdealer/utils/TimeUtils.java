@@ -5,9 +5,6 @@ public class TimeUtils {
     private static int MINS_IN_MILLIS = 60000;
     private static int SECS_IN_MILLIS = 1000;
 
-    public static int MIN_TIME = 0;
-    public static int MAX_TIME = 59;
-
     private TimeUtils() {
     }
 
@@ -39,7 +36,6 @@ public class TimeUtils {
         return (String.valueOf(minutes).length() == 1 ? "0" + minutes : String.valueOf(minutes));
     }
 
-
     public static int getHours(long millis) {
         return (int) (millis / HOURS_IN_MILLIS);
     }
@@ -56,12 +52,8 @@ public class TimeUtils {
         return minutes * MINS_IN_MILLIS;
     }
 
-    public static int getSecs(long millis) {
+    private static int getSecs(long millis) {
         return (int) ((millis / SECS_IN_MILLIS) % 60);
-    }
-
-    public static long getSecsInMillis(int seconds) {
-        return seconds * SECS_IN_MILLIS;
     }
 
 }

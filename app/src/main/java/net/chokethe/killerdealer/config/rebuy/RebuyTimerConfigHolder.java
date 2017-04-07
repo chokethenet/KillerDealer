@@ -1,4 +1,4 @@
-package net.chokethe.killerdealer;
+package net.chokethe.killerdealer.config.rebuy;
 
 import android.content.Context;
 

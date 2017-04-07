@@ -1,4 +1,4 @@
-package net.chokethe.killerdealer.config;
+package net.chokethe.killerdealer.config.blinds;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,15 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.R;
+import net.chokethe.killerdealer.config.ConfigActivity;
 import net.chokethe.killerdealer.db.BlindsContract;
 import net.chokethe.killerdealer.db.KillerDealerDbHelper;
 
-class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> {
+public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> {
     private Context mContext;
     private KillerDealerDbHelper mKillerDealerDbHelper;
     private Cursor mCursor;
 
-    BlindsAdapter(Context context, KillerDealerDbHelper db) {
+    public BlindsAdapter(Context context, KillerDealerDbHelper db) {
         mContext = context;
         mKillerDealerDbHelper = db;
         mCursor = mKillerDealerDbHelper.getAllBlinds();
@@ -52,13 +53,13 @@ class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> 
         return mCursor.getCount();
     }
 
-    void close() {
+    public void close() {
         if (mCursor != null && !mCursor.isClosed()) {
             mCursor.close();
         }
     }
 
-    void swapCursor() {
+    public void swapCursor() {
         if (mCursor != null) {
             mCursor.close();
         }
@@ -66,8 +67,8 @@ class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> 
         this.notifyDataSetChanged();
     }
 
-    class BlindViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        long id;
+    public class BlindViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public long id;
         TextView mSmallBlind;
         TextView mBigBlind;
         TextView mRiseTime;

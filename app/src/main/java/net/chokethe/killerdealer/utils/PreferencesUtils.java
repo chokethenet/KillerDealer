@@ -8,20 +8,12 @@ import android.preference.PreferenceManager;
 import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.SessionHolder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class PreferencesUtils {
-    private static final Integer[] DEFAULT_BLINDS_LIST = {10, 25, 50, 75};
-    private static final long DEFAULT_RISE_TIME = 1200000;
     private static final long DEFAULT_REBUY_TIME = 10800000;
     private static final int DEFAULT_STATUS = SessionHolder.Status.DEAD.getId();
     private static final long DEFAULT_LAST_PLAY_TIME = 0;
-    private static final int DEFAULT_BLINDS_POS = 0;
-    private static final int DEFAULT_MULTIPLIER = 10;
-    private static final int MAX_BLIND = 99999999;
+    public static final int DEFAULT_BLINDS_POS = 0;
+
     public static final boolean DEFAULT_RISE_RESET = false;
     public static final boolean DEFAULT_SCREEN_ON = false;
     public static final boolean DEFAULT_VIBRATE_ON = true;
@@ -89,83 +81,6 @@ public class PreferencesUtils {
         setLongValue(context, R.string.last_play_time_pref, lastPlayTime);
     }
 
-    public static List<Integer> getFullBlindsList(Context context) {
-        List<Integer> blindsList = getRawBlindsList(context);
-        blindsList.addAll(getGeneratedNextBlinds(blindsList));
-        return blindsList;
-    }
-
-    public static List<Integer> getRawBlindsList(Context context) {
-        List<Integer> blindsList = new ArrayList<>();
-        int blind;
-        for (int i = 0; i < 20; i++) {
-            blind = getSharedPreferences(context)
-                    .getInt(context.getString(R.string.blind_pref) + i, 0);
-            if (blind != 0) {
-                blindsList.add(blind);
-            }
-        }
-        generateDefaultBlinds(blindsList);
-        return blindsList;
-    }
-
-    public static void generateDefaultBlinds(List<Integer> blindsList) {
-        if (blindsList.isEmpty()) {
-            blindsList.addAll(new ArrayList<>(Arrays.asList(DEFAULT_BLINDS_LIST)));
-        }
-    }
-
-    public static List<Integer> getGeneratedNextBlinds(List<Integer> blindsList) {
-        List<Integer> generatedBlindsList = new ArrayList<>();
-        int pos = 0;
-
-        int blindsListSize = blindsList.size();
-        int generator = DEFAULT_MULTIPLIER;
-        while (blindsList.get(0) * generator < blindsList.get(blindsListSize - 1)) {
-            generator = generator * DEFAULT_MULTIPLIER;
-        }
-        if (blindsList.get(0) * generator == blindsList.get(blindsListSize - 1)) {
-            pos++;
-        }
-
-        int missing = 100 - blindsListSize;
-        for (; pos < missing; pos++) {
-            int generatedBlind;
-            if (pos < blindsListSize) {
-                generatedBlind = blindsList.get(pos) * generator;
-            } else {
-                generatedBlind = generatedBlindsList.get(pos - blindsListSize) * generator;
-            }
-            if (generatedBlind > MAX_BLIND) {
-                break;
-            }
-            generatedBlindsList.add(generatedBlind);
-        }
-        return generatedBlindsList;
-    }
-
-    public static void setBlindsList(Context context, List<Integer> blindsList) {
-        Collections.sort(blindsList);
-        int blindsSize = blindsList.size();
-        for (int i = 0; i < blindsSize; i++) {
-            getSharedPreferencesEditor(context)
-                    .putInt(context.getString(R.string.blind_pref) + i, blindsList.get(i));
-        }
-        for (int i = blindsSize; i < 20; i++) {
-            getSharedPreferencesEditor(context)
-                    .putInt(context.getString(R.string.blind_pref) + i, 0);
-        }
-        getSharedPreferencesEditor(context).commit();
-    }
-
-    public static long getRiseTime(Context context) {
-        return getLongValue(context, R.string.rise_timer_pref, DEFAULT_RISE_TIME);
-    }
-
-    public static void setRiseTime(Context context, long riseTime) {
-        setLongValue(context, R.string.rise_timer_pref, riseTime);
-    }
-
     public static long getRebuyTime(Context context) {
         return getLongValue(context, R.string.rebuy_timer_pref, DEFAULT_REBUY_TIME);
     }
@@ -174,8 +89,8 @@ public class PreferencesUtils {
         setLongValue(context, R.string.rebuy_timer_pref, rebuyTime);
     }
 
-    public static long getPausedRiseTime(Context context) {
-        return getLongValue(context, R.string.pause_rise_time_pref, DEFAULT_RISE_TIME);
+    public static long getPausedRiseTime(Context context, long defaultRiseTime) {
+        return getLongValue(context, R.string.pause_rise_time_pref, defaultRiseTime);
     }
 
     public static void setPausedRiseTime(Context context, long pausedRiseTime) {
