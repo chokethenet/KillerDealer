@@ -10,25 +10,24 @@ import android.widget.TextView;
 
 import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.db.BlindsContract;
+import net.chokethe.killerdealer.db.KillerDealerDbHelper;
 
-public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> {
+class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> {
     private Context mContext;
+    private KillerDealerDbHelper mKillerDealerDbHelper;
     private Cursor mCursor;
 
-    public BlindsAdapter(Context context, Cursor cursor) {
+    BlindsAdapter(Context context, KillerDealerDbHelper db) {
         mContext = context;
-        mCursor = cursor;
+        mKillerDealerDbHelper = db;
+        mCursor = mKillerDealerDbHelper.getAllBlinds();
     }
-
-//    public List<Integer> getBlinds() {
-//        return mBlinds;
-//    }
 
     @Override
     public BlindViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.blind_layout, parent, false);
-        return new BlindViewHolder(view);
+        return new BlindViewHolder(this, view);
     }
 
     @Override
@@ -53,29 +52,39 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         return mCursor.getCount();
     }
 
+    void close() {
+        if (mCursor != null && !mCursor.isClosed()) {
+            mCursor.close();
+        }
+    }
+
+    void swapCursor() {
+        if (mCursor != null) {
+            mCursor.close();
+        }
+        mCursor = mKillerDealerDbHelper.getAllBlinds();
+        this.notifyDataSetChanged();
+    }
+
     class BlindViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         long id;
         TextView mSmallBlind;
         TextView mBigBlind;
         TextView mRiseTime;
+        BlindsAdapter mAdapter;
 
-        BlindViewHolder(View itemView) {
+        BlindViewHolder(BlindsAdapter adapter, View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             mSmallBlind = (TextView) itemView.findViewById(R.id.blind_tv_blind_small);
             mBigBlind = (TextView) itemView.findViewById(R.id.blind_tv_blind_big);
             mRiseTime = (TextView) itemView.findViewById(R.id.blind_tv_rise_time);
+            mAdapter = adapter;
         }
 
         @Override
         public void onClick(View v) {
-            popBlindsDialog();
-        }
-
-        private void popBlindsDialog() {
-            BlindDialogHelper.showUpdate(mContext, this);
-            // TODO: update the cursor
-            notifyDataSetChanged();
+            BlindDialogHelper.showUpdate(mContext, mAdapter, mKillerDealerDbHelper, this);
         }
     }
 }

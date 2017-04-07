@@ -29,6 +29,8 @@
     <string name="iv_blind_big_desc">Big blind chip</string>
     <string name="hh">H</string>
     <string name="mm">M</string>
+    <string name="dialog_add_title">Add</string>
+    <string name="dialog_update_title">Update</string>
     <string name="dialog_save">Save</string>
     <string name="dialog_cancel">Cancel</string>
 

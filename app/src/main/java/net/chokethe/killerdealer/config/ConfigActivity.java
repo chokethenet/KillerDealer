@@ -1,21 +1,23 @@
 package net.chokethe.killerdealer.config;
 
-import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 import android.widget.TextView;
 
 import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.db.KillerDealerDbHelper;
+import net.chokethe.killerdealer.utils.CommonUtils;
 
 public class ConfigActivity extends AppCompatActivity {
 
     private BlindsAdapter mAdapter;
     private RecyclerView mRecyclerView;
     private KillerDealerDbHelper mKillerDealerDbHelper;
-    private Cursor mBlindsCursor;
 
     // TODO: missing rebuy timer layout and dialog
 
@@ -24,71 +26,34 @@ public class ConfigActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
-//        final FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.fab);
-//        fabButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Collections.sort(mAdapter.getBlinds());
-        // TODO: db.insert -> update cursor
-////                mAdapter.getBlinds().add(0);
-//                mAdapter.notifyDataSetChanged();
-//
-//                int lastPosition = mAdapter.getItemCount() - 1;
-//                mRecyclerView.smoothScrollToPosition(lastPosition);
-//                View current = getCurrentFocus();
-//                if (current != null) {
-//                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//                    imm.hideSoftInputFromWindow(current.getWindowToken(), 0);
-//                    current.clearFocus();
-//                }
-//                CommonUtils.showToast(ConfigActivity.this, getString(R.string.blind_added));
-//            }
-//        });
+        final FloatingActionButton fabButton = (FloatingActionButton) findViewById(R.id.fab);
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BlindDialogHelper.showInsert(ConfigActivity.this, mRecyclerView, mKillerDealerDbHelper);
+            }
+        });
 
         mKillerDealerDbHelper = new KillerDealerDbHelper(this);
-        mBlindsCursor = mKillerDealerDbHelper.getAllBlinds();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        updateUI();
-    }
-
-    private void updateUI() {
-        mAdapter = new BlindsAdapter(this, mBlindsCursor);
+        mAdapter = new BlindsAdapter(this, mKillerDealerDbHelper);
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_blinds);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
 
-//        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-//            @Override
-//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-//                Integer blind = (Integer) viewHolder.itemView.getTag();
-        // TODO: db.delete -> update cursor
-////                mAdapter.getBlinds().remove(blind);
-////                if (mAdapter.getBlinds().isEmpty()) {
-////                    mAdapter.getBlinds().add(0);
-////                }
-//                mAdapter.notifyDataSetChanged();
-//                CommonUtils.showToast(ConfigActivity.this, getString(R.string.blind_deleted));
-//            }
-//        }).attachToRecyclerView(mRecyclerView);
-    }
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                BlindsAdapter.BlindViewHolder blindViewHolder = (BlindsAdapter.BlindViewHolder) viewHolder;
+                mKillerDealerDbHelper.deleteBlind(blindViewHolder.id);
+                mAdapter.swapCursor();
+                CommonUtils.showToast(ConfigActivity.this, getString(R.string.blind_deleted));
+            }
+        }).attachToRecyclerView(mRecyclerView);
     }
 
     public static void setBlindTextWithAdaptableSize(TextView textView, int value, boolean isConfig) {
@@ -96,6 +61,7 @@ public class ConfigActivity extends AppCompatActivity {
         textView.setText(String.valueOf(value));
     }
 
+    // TODO: use this when typing in dialogs
 //    public static void adaptBlindSize(TextView textView) {
 //        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())), true);
 //    }
@@ -124,9 +90,7 @@ public class ConfigActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mBlindsCursor != null && !mBlindsCursor.isClosed()) {
-            mBlindsCursor.close();
-        }
+        mAdapter.close();
         mKillerDealerDbHelper.close();
     }
 }
