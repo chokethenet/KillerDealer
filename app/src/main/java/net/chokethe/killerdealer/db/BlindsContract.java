@@ -41,7 +41,7 @@ public class BlindsContract {
     }
 
     static Cursor selectAll(SQLiteDatabase db) {
-        return db.query(BlindsContract.BlindsEntry.TABLE_NAME, null, null, null, null, null, BlindsContract.BlindsEntry._ID);
+        return db.query(BlindsContract.BlindsEntry.TABLE_NAME, null, null, null, null, null, BlindsEntry.COLUMN_SMALL_BLIND + ", " + BlindsEntry.COLUMN_BIG_BLIND);
     }
 
     static void update(SQLiteDatabase db, ContentValues contentValues) {

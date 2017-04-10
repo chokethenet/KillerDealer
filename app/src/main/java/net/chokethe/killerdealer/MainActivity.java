@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity
 
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
-        mSmallBlindTextView = (TextView) findViewById(R.id.tv_blind_small);
-        mBigBlindTextView = (TextView) findViewById(R.id.tv_blind_big);
-        mRiseTimerTextView = (TextView) findViewById(R.id.tv_rise_timer);
-        mRebuyTimerTextView = (TextView) findViewById(R.id.tv_rebuy_timer);
-        mPlayPauseView = (ImageView) findViewById(R.id.iv_play_pause);
+        mSmallBlindTextView = (TextView) findViewById(R.id.main_tv_blind_small);
+        mBigBlindTextView = (TextView) findViewById(R.id.main_tv_blind_big);
+        mRiseTimerTextView = (TextView) findViewById(R.id.main_tv_rise_timer);
+        mRebuyTimerTextView = (TextView) findViewById(R.id.main_tv_rebuy_timer);
+        mPlayPauseView = (ImageView) findViewById(R.id.main_iv_play_pause);
 
         findViewById(R.id.main_iv_blind_prev).setOnClickListener(this);
         findViewById(R.id.main_iv_blind_next).setOnClickListener(this);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         mRebuyTimerTextView.setOnClickListener(this);
         findViewById(R.id.main_iv_rise_reload).setOnClickListener(this);
         findViewById(R.id.main_iv_rebuy_reload).setOnClickListener(this);
-        findViewById(R.id.iv_reload).setOnClickListener(this);
+        findViewById(R.id.main_iv_reload).setOnClickListener(this);
         mPlayPauseView.setOnClickListener(this);
     }
 
@@ -158,10 +158,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.main_iv_blind_next:
                 setNextBlindOnClick();
                 break;
-            case R.id.tv_blind_small:
-            case R.id.tv_blind_big:
-            case R.id.tv_rise_timer:
-            case R.id.tv_rebuy_timer:
+            case R.id.main_tv_blind_small:
+            case R.id.main_tv_blind_big:
+            case R.id.main_tv_rise_timer:
+            case R.id.main_tv_rebuy_timer:
                 configOnClick(ConfigActivity.class);
                 break;
             case R.id.main_iv_rise_reload:
@@ -170,10 +170,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.main_iv_rebuy_reload:
                 reloadRebuyOnClick();
                 break;
-            case R.id.iv_reload:
+            case R.id.main_iv_reload:
                 reloadOnClick();
                 break;
-            case R.id.iv_play_pause:
+            case R.id.main_iv_play_pause:
                 playPauseOnClick();
                 break;
         }
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity
 
     private void updateBlindsAndTimers() {
         updateBlindsUI();
-        if (mSettingsHolder.isRiseReset()) {
+        if (mSettingsHolder.isRiseReset() || mSessionHolder.isStopped()) {
             mSessionHolder.resetRiseTimeLeft();
             reloadTimers();
         }

@@ -76,12 +76,12 @@
         android:layout_marginRight="@dimen/small"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/blind_iv_blind_big"
-        app:layout_constraintRight_toLeftOf="@+id/blind_tv_mm"
+        app:layout_constraintRight_toLeftOf="@+id/blind_tv_blind_mm"
         app:layout_constraintTop_toTopOf="@+id/blind_iv_blind_big"
         tools:text="30" />
 
     <TextView
-        android:id="@+id/blind_tv_mm"
+        android:id="@+id/blind_tv_blind_mm"
         style="@style/KillerDealer.Text.title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

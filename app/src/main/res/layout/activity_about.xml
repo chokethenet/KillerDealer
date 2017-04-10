@@ -16,7 +16,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/about_iv_app"
+            android:id="@+id/about_iv_app_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/about_logo_desc"
@@ -33,8 +33,8 @@
             android:layout_marginStart="@dimen/medium"
             android:layout_marginTop="0dp"
             android:text="@string/about_title"
-            app:layout_constraintLeft_toRightOf="@+id/about_iv_app"
-            app:layout_constraintTop_toTopOf="@+id/about_iv_app" />
+            app:layout_constraintLeft_toRightOf="@+id/about_iv_app_logo"
+            app:layout_constraintTop_toTopOf="@+id/about_iv_app_logo" />
 
         <TextView
             android:id="@+id/about_tv_app_name"
@@ -61,7 +61,7 @@
             tools:text="2017-04-05" />
 
         <ImageView
-            android:id="@+id/about_iv_mail"
+            android:id="@+id/about_iv_mail_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/about_mail_desc"
@@ -80,7 +80,7 @@
             app:layout_constraintTop_toBottomOf="@+id/about_tv_since" />
 
         <TextView
-            android:id="@+id/about_tv_mail"
+            android:id="@+id/about_tv_mail_uri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_mail_to"
@@ -88,7 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/about_tv_contact_title" />
 
         <ImageView
-            android:id="@+id/about_iv_github"
+            android:id="@+id/about_iv_github_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
@@ -106,11 +106,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large"
             android:text="@string/about_collaborate_title"
-            app:layout_constraintLeft_toLeftOf="@+id/about_tv_mail"
-            app:layout_constraintTop_toBottomOf="@+id/about_tv_mail" />
+            app:layout_constraintLeft_toLeftOf="@+id/about_tv_mail_uri"
+            app:layout_constraintTop_toBottomOf="@+id/about_tv_mail_uri" />
 
         <TextView
-            android:id="@+id/about_tv_github"
+            android:id="@+id/about_tv_github_uri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_github"

@@ -122,7 +122,7 @@ public class SessionHolder {
         setRebuyTimeLeft(rebuyTimePref);
     }
 
-    private boolean isStopped() {
+    boolean isStopped() {
         return status.equals(Status.DEAD);
     }
 

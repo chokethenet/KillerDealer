@@ -29,9 +29,9 @@ public class BlindDialogHelper {
                     public void onClick(DialogInterface dInterface, int id) {
                         final Dialog d = (Dialog) dInterface;
 
-                        EditText smallBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_tv_blind_small);
-                        EditText bigBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_tv_blind_big);
-                        NumberPicker riseTimeNumberPicker = (NumberPicker) d.findViewById(R.id.blind_dialog_tv_rise_time);
+                        EditText smallBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_et_blind_small);
+                        EditText bigBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_et_blind_big);
+                        NumberPicker riseTimeNumberPicker = (NumberPicker) d.findViewById(R.id.blind_dialog_np_rise_minutes);
 
                         // TODO: set listeners to blinds to adapt size
 //            BlindEditTextListener blindEditTextListener = new BlindEditTextListener(mBlind);
@@ -41,7 +41,11 @@ public class BlindDialogHelper {
                         int bigBlind = Integer.parseInt(bigBlindEditText.getText().toString());
                         int riseTime = riseTimeNumberPicker.getValue();
 
-                        db.insertBlind(smallBlind, bigBlind, riseTime);
+                        if (smallBlind <= bigBlind) {
+                            db.insertBlind(smallBlind, bigBlind, riseTime);
+                        } else {
+                            db.insertBlind(bigBlind, smallBlind, riseTime);
+                        }
                         BlindsAdapter adapter = (BlindsAdapter) recyclerView.getAdapter();
                         adapter.swapCursor();
                         recyclerView.smoothScrollToPosition(0);
@@ -63,9 +67,9 @@ public class BlindDialogHelper {
                     public void onClick(DialogInterface dInterface, int id) {
                         final Dialog d = (Dialog) dInterface;
 
-                        EditText smallBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_tv_blind_small);
-                        EditText bigBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_tv_blind_big);
-                        NumberPicker riseTimeNumberPicker = (NumberPicker) d.findViewById(R.id.blind_dialog_tv_rise_time);
+                        EditText smallBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_et_blind_small);
+                        EditText bigBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_et_blind_big);
+                        NumberPicker riseTimeNumberPicker = (NumberPicker) d.findViewById(R.id.blind_dialog_np_rise_minutes);
 
                         // TODO: set listeners to blinds to adapt size
 //            BlindEditTextListener blindEditTextListener = new BlindEditTextListener(mBlind);
@@ -87,14 +91,14 @@ public class BlindDialogHelper {
     private static View inflateBlindDialogView(BlindsAdapter.BlindViewHolder blindViewHolder, Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View blindDialogView = inflater.inflate(R.layout.blind_dialog, null);
-        NumberPicker riseTimeNumberPicker = (NumberPicker) blindDialogView.findViewById(R.id.blind_dialog_tv_rise_time);
+        NumberPicker riseTimeNumberPicker = (NumberPicker) blindDialogView.findViewById(R.id.blind_dialog_np_rise_minutes);
         riseTimeNumberPicker.setMinValue(0);
         riseTimeNumberPicker.setMaxValue(99);
         if (blindViewHolder != null) {
             riseTimeNumberPicker.setValue(Integer.parseInt(blindViewHolder.mRiseTime.getText().toString()));
 
-            EditText smallBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_tv_blind_small);
-            EditText bigBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_tv_blind_big);
+            EditText smallBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_et_blind_small);
+            EditText bigBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_et_blind_big);
             smallBlindEditText.setText(blindViewHolder.mSmallBlind.getText());
             bigBlindEditText.setText(blindViewHolder.mBigBlind.getText());
         }

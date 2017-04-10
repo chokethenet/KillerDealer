@@ -8,6 +8,10 @@
     <string name="rebuy_end_toast">Rebuy ended!</string>
     <string name="iv_reload_desc">Reload button</string>
     <string name="iv_play_pause_desc">Play/pause button</string>
+    <string name="iv_blind_prev_desc">Previous blind</string>
+    <string name="iv_blind_next_desc">Next blind</string>
+    <string name="iv_rise_reload_desc">Rise time reload</string>
+    <string name="iv_rebuy_reload_desc">Rebuy time reload</string>
 
     <!-- SESSION -->
     <string name="status_pref" translatable="false">status-pref</string>

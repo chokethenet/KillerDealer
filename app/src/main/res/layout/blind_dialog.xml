@@ -14,13 +14,13 @@
         android:layout_marginLeft="@dimen/medium"
         android:layout_marginStart="@dimen/medium"
         android:contentDescription="@string/iv_blind_small_desc"
-        app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_tv_rise_time"
+        app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_np_rise_minutes"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/blind_dialog_tv_rise_time"
+        app:layout_constraintTop_toTopOf="@+id/blind_dialog_np_rise_minutes"
         app:srcCompat="@drawable/small_circle" />
 
     <EditText
-        android:id="@+id/blind_dialog_tv_blind_small"
+        android:id="@+id/blind_dialog_et_blind_small"
         style="@style/KillerDealer.Text.smallNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,14 +38,14 @@
         android:layout_width="@dimen/xx_large"
         android:layout_height="@dimen/xx_large"
         android:contentDescription="@string/iv_blind_big_desc"
-        app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_tv_rise_time"
+        app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_np_rise_minutes"
         app:layout_constraintLeft_toRightOf="@+id/blind_dialog_iv_blind_small"
-        app:layout_constraintRight_toLeftOf="@+id/blind_dialog_tv_rise_time"
-        app:layout_constraintTop_toTopOf="@+id/blind_dialog_tv_rise_time"
+        app:layout_constraintRight_toLeftOf="@+id/blind_dialog_np_rise_minutes"
+        app:layout_constraintTop_toTopOf="@+id/blind_dialog_np_rise_minutes"
         app:srcCompat="@drawable/small_circle" />
 
     <EditText
-        android:id="@+id/blind_dialog_tv_blind_big"
+        android:id="@+id/blind_dialog_et_blind_big"
         style="@style/KillerDealer.Text.smallNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,24 +58,24 @@
         tools:text="50" />
 
     <NumberPicker
-        android:id="@+id/blind_dialog_tv_rise_time"
+        android:id="@+id/blind_dialog_np_rise_minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/small"
         android:layout_marginRight="@dimen/small"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/blind_dialog_tv_minutes"
+        app:layout_constraintRight_toLeftOf="@+id/blind_dialog_tv_rise_mm"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/blind_dialog_tv_minutes"
+        android:id="@+id/blind_dialog_tv_rise_mm"
         style="@style/KillerDealer.Text.title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/medium"
         android:layout_marginRight="@dimen/medium"
         android:text="@string/mm"
-        app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_tv_rise_time"
+        app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_np_rise_minutes"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/blind_dialog_tv_rise_time" />
+        app:layout_constraintTop_toTopOf="@+id/blind_dialog_np_rise_minutes" />
 </android.support.constraint.ConstraintLayout>

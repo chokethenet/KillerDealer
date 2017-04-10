@@ -23,10 +23,10 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        findViewById(R.id.about_iv_mail).setOnClickListener(this);
-        findViewById(R.id.about_tv_mail).setOnClickListener(this);
-        findViewById(R.id.about_iv_github).setOnClickListener(this);
-        findViewById(R.id.about_tv_github).setOnClickListener(this);
+        findViewById(R.id.about_iv_mail_logo).setOnClickListener(this);
+        findViewById(R.id.about_tv_mail_uri).setOnClickListener(this);
+        findViewById(R.id.about_iv_github_logo).setOnClickListener(this);
+        findViewById(R.id.about_tv_github_uri).setOnClickListener(this);
 
         try {
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
@@ -45,12 +45,12 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.about_iv_mail:
-            case R.id.about_tv_mail:
+            case R.id.about_iv_mail_logo:
+            case R.id.about_tv_mail_uri:
                 intentMail();
                 break;
-            case R.id.about_iv_github:
-            case R.id.about_tv_github:
+            case R.id.about_iv_github_logo:
+            case R.id.about_tv_github_uri:
                 intentBrowser();
                 break;
         }

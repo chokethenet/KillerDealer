@@ -43,4 +43,8 @@
     <string name="about_logo_desc">Logo de la aplicación</string>
     <string name="about_mail_desc">Logo de correo electronico</string>
     <string name="about_github_desc">Logo de GitHub</string>
+    <string name="iv_blind_next_desc">Ciega siguiente</string>
+    <string name="iv_blind_prev_desc">Ciega anterior</string>
+    <string name="iv_rebuy_reload_desc">Reinicio del tiempo de recompra</string>
+    <string name="iv_rise_reload_desc">Reinicio del tiempo de subida</string>
 </resources>
