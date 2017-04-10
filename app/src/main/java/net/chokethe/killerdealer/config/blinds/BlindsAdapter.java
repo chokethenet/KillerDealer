@@ -12,6 +12,7 @@ import net.chokethe.killerdealer.R;
 import net.chokethe.killerdealer.config.ConfigActivity;
 import net.chokethe.killerdealer.db.BlindsContract;
 import net.chokethe.killerdealer.db.KillerDealerDbHelper;
+import net.chokethe.killerdealer.utils.TimeUtils;
 
 public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewHolder> {
     private Context mContext;
@@ -45,7 +46,7 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
         holder.id = id;
         ConfigActivity.setBlindTextWithAdaptableSize(holder.mSmallBlind, smallBlind, true);
         ConfigActivity.setBlindTextWithAdaptableSize(holder.mBigBlind, bigBlind, true);
-        holder.mRiseTime.setText(String.valueOf(riseTime));
+        holder.mRiseTime.setText(TimeUtils.getTwoDigitsTime(riseTime));
     }
 
     @Override

@@ -87,10 +87,9 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         textView.setText(String.valueOf(value));
     }
 
-    // TODO: use this when typing in dialogs
-//    public static void adaptBlindSize(TextView textView) {
-//        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())), true);
-//    }
+    public static void adaptBlindSize(TextView textView) {
+        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())), true);
+    }
 
     private static void setBlindAdaptableSize(TextView textView, int value, boolean isConfig) {
         int textSize = 64;

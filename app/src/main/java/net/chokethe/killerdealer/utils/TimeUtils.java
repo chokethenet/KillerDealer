@@ -9,12 +9,16 @@ public class TimeUtils {
     }
 
     public static String getPrettyTime(long millis) {
-        long hours = getHours(millis);
-        long minutes = getMins(millis);
-        long seconds = getSecs(millis);
+        int hours = getHours(millis);
+        int minutes = getMins(millis);
+        int seconds = getSecs(millis);
         return (hours == 0 ? "" : hours + ":")
-                + (String.valueOf(minutes).length() == 1 ? "0" + minutes : minutes) + ":"
-                + (String.valueOf(seconds).length() == 1 ? "0" + seconds : seconds);
+                + getTwoDigitsTime(minutes) + ":"
+                + getTwoDigitsTime(seconds);
+    }
+
+    public static String getTwoDigitsTime(int time) {
+        return String.valueOf(time).length() == 1 ? "0" + time : String.valueOf(time);
     }
 
     public static long getTotalElapsedMillis(long lastPlayTime, long timeLeft, long timePref, long now) {
