@@ -19,6 +19,8 @@ public class BlindDialogHelper {
     private BlindDialogHelper() {
     }
 
+    // FIXME: try to unify code from both shows
+
     public static void showInsert(final Context context, final RecyclerView recyclerView, final KillerDealerDbHelper db) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View blindDialogView = inflateBlindDialogView(null, context);

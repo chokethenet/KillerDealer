@@ -35,7 +35,6 @@ public class SessionHolder {
     private long lastPlayTime;
 
     private Cursor blindsCursor;
-    private int blindPos;
 
     private long riseTimeLeft;
     private long rebuyTimePref;
@@ -50,7 +49,7 @@ public class SessionHolder {
         lastPlayTime = PreferencesUtils.getLastPlayTime(context);
 
         blindsCursor = mKillerDealerDbHelper.getAllBlinds();
-        blindPos = PreferencesUtils.getBlindPos(context);
+        int blindPos = PreferencesUtils.getBlindPos(context);
         if (blindPos >= blindsCursor.getCount()) {
             blindPos = PreferencesUtils.DEFAULT_BLINDS_POS;
         }

@@ -16,7 +16,7 @@ public class NotificationUtils {
         }
     }
 
-    public static void scheduleNotification(Context context, String action, long now, long millisInFuture) {
+    static void scheduleNotification(Context context, String action, long now, long millisInFuture) {
         PendingIntent pendingIntent = getPendingIntent(context, action);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, now + millisInFuture, pendingIntent);

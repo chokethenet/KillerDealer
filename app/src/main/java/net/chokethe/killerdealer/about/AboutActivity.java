@@ -13,6 +13,7 @@ import net.chokethe.killerdealer.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class AboutActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,10 +33,11 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
             PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
 
             TextView versionNameTextView = (TextView) findViewById(R.id.about_tv_version_name);
-            versionNameTextView.setText("v" + pInfo.versionName);
+            String versionName = "v" + pInfo.versionName;
+            versionNameTextView.setText(versionName);
 
             TextView sinceTextView = (TextView) findViewById(R.id.about_tv_since);
-            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
             sinceTextView.setText(dt.format(new Date(pInfo.lastUpdateTime)));
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -65,7 +67,7 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void intentBrowser() {
-        Uri uri = Uri.parse(getString(R.string.about_github));
+        Uri uri = Uri.parse(getString(R.string.about_github_uri));
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }

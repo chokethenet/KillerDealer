@@ -113,7 +113,7 @@
             android:id="@+id/about_tv_github_uri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/about_github"
+            android:text="@string/about_github_uri"
             app:layout_constraintLeft_toLeftOf="@+id/about_tv_collaborate_title"
             app:layout_constraintTop_toBottomOf="@+id/about_tv_collaborate_title" />
 

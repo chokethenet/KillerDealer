@@ -22,6 +22,8 @@
     <string name="blind_pos_pref" translatable="false">blins-pos-pref</string>
 
     <!-- BLINDS CONFIG -->
+    <string name="rebuy_title">Rebuy</string>
+    <string name="rise_title">Rise</string>
     <string name="blinds_title">Blinds</string>
     <string name="blind_added">Blind added</string>
     <string name="blind_deleted">Blind deleted!</string>
@@ -33,11 +35,6 @@
     <string name="dialog_update_title">Update</string>
     <string name="dialog_save">Save</string>
     <string name="dialog_cancel">Cancel</string>
-
-    <!-- TIMERS CONFIG -->
-    <string name="rise_title">Rise</string>
-    <string name="rebuy_title">Rebuy</string>
-    <string name="ss">S</string>
 
     <!-- SETTINGS -->
     <string name="settings_title">Settings</string>
@@ -67,7 +64,7 @@
     <string name="about_mail_to" translatable="false">choke84@gmail.com</string>
     <string name="about_mail_subject">Contact from KillerDealer</string>
     <string name="about_collaborate_title">Collaborate</string>
-    <string name="about_github" translatable="false">https://github.com/chokethenet/KillerDealer</string>
+    <string name="about_github_uri" translatable="false">https://github.com/chokethenet/KillerDealer</string>
     <string name="about_logo_desc">App logo</string>
     <string name="about_mail_desc">e-mail logo</string>
     <string name="about_github_desc">GitHub logo</string>
