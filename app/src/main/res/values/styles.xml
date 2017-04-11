@@ -13,23 +13,32 @@
     <style name="KillerDealer.Common"></style>
 
     <style name="KillerDealer.Text"></style>
+
     <style name="KillerDealer.Text.title" parent="KillerDealer.Common">
         <item name="android:fontFamily">sans-serif-smallcaps</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
     <style name="KillerDealer.Text.number" parent="KillerDealer.Common">
         <item name="android:textSize">64sp</item>
     </style>
+
     <style name="KillerDealer.Text.smallNumber" parent="KillerDealer.Common">
         <item name="android:textSize">32sp</item>
     </style>
 
     <style name="KillerDealer.Image"></style>
+
     <style name="KillerDealer.Image.circle">
-        <item name="android:layout_width">112dp</item>
-        <item name="android:layout_height">112dp</item>
+        <item name="android:layout_width">@dimen/xxx_large</item>
+        <item name="android:layout_height">@dimen/xxx_large</item>
+    </style>
+
+    <style name="KillerDealer.Image.smallCircle">
+        <item name="android:layout_width">@dimen/xx_large</item>
+        <item name="android:layout_height">@dimen/xx_large</item>
     </style>
 
 </resources>

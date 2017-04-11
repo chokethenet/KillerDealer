@@ -23,13 +23,13 @@
     <ImageView
         android:id="@+id/main_iv_blind_small"
         style="@style/KillerDealer.Image.circle"
-        android:layout_marginLeft="@dimen/extra_large"
-        android:layout_marginStart="@dimen/extra_large"
+        android:layout_marginLeft="@dimen/x_large"
+        android:layout_marginStart="@dimen/x_large"
         android:layout_marginTop="@dimen/medium"
         android:contentDescription="@string/iv_blind_small_desc"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_tv_blind_title"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/ic_circle" />
 
     <TextView
         android:id="@+id/main_tv_blind_small"
@@ -60,13 +60,13 @@
     <ImageView
         android:id="@+id/main_iv_blind_big"
         style="@style/KillerDealer.Image.circle"
-        android:layout_marginEnd="@dimen/extra_large"
-        android:layout_marginRight="@dimen/extra_large"
+        android:layout_marginEnd="@dimen/x_large"
+        android:layout_marginRight="@dimen/x_large"
         android:layout_marginTop="0dp"
         android:contentDescription="@string/iv_blind_big_desc"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_iv_blind_small"
-        app:srcCompat="@drawable/circle" />
+        app:srcCompat="@drawable/ic_circle" />
 
     <TextView
         android:id="@+id/main_tv_blind_big"
@@ -121,18 +121,18 @@
 
     <ImageView
         android:id="@+id/main_iv_rise_reload"
-        android:layout_width="@dimen/extra_large"
-        android:layout_height="@dimen/extra_large"
+        android:layout_width="@dimen/x_large"
+        android:layout_height="@dimen/x_large"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:contentDescription="@string/iv_rise_reload_desc"
         app:layout_constraintBottom_toBottomOf="@+id/main_tv_rise_timer"
         app:layout_constraintLeft_toRightOf="@+id/main_tv_rise_timer"
         app:layout_constraintTop_toTopOf="@+id/main_tv_rise_timer"
         app:layout_constraintVertical_bias="0.523"
-        app:srcCompat="@drawable/ic_reload"
-        android:contentDescription="@string/iv_rise_reload_desc" />
+        app:srcCompat="@drawable/ic_reload" />
 
     <!-- REBUY -->
     <TextView
@@ -161,18 +161,18 @@
 
     <ImageView
         android:id="@+id/main_iv_rebuy_reload"
-        android:layout_width="@dimen/extra_large"
-        android:layout_height="@dimen/extra_large"
+        android:layout_width="@dimen/x_large"
+        android:layout_height="@dimen/x_large"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:contentDescription="@string/iv_rebuy_reload_desc"
         app:layout_constraintBottom_toBottomOf="@+id/main_tv_rebuy_timer"
         app:layout_constraintLeft_toRightOf="@+id/main_tv_rebuy_timer"
         app:layout_constraintTop_toTopOf="@+id/main_tv_rebuy_timer"
         app:layout_constraintVertical_bias="0.523"
-        app:srcCompat="@drawable/ic_reload"
-        android:contentDescription="@string/iv_rebuy_reload_desc" />
+        app:srcCompat="@drawable/ic_reload" />
 
     <!-- CONTROLS -->
     <ImageView

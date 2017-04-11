@@ -8,16 +8,14 @@
 
     <ImageView
         android:id="@+id/blind_dialog_iv_blind_small"
-        style="@style/KillerDealer.Image.circle"
-        android:layout_width="@dimen/xx_large"
-        android:layout_height="@dimen/xx_large"
+        style="@style/KillerDealer.Image.smallCircle"
         android:layout_marginLeft="@dimen/medium"
         android:layout_marginStart="@dimen/medium"
         android:contentDescription="@string/iv_blind_small_desc"
         app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_np_rise_minutes"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/blind_dialog_np_rise_minutes"
-        app:srcCompat="@drawable/small_circle" />
+        app:srcCompat="@drawable/ic_circle" />
 
     <EditText
         android:id="@+id/blind_dialog_et_blind_small"
@@ -34,15 +32,13 @@
 
     <ImageView
         android:id="@+id/blind_dialog_iv_blind_big"
-        style="@style/KillerDealer.Image.circle"
-        android:layout_width="@dimen/xx_large"
-        android:layout_height="@dimen/xx_large"
+        style="@style/KillerDealer.Image.smallCircle"
         android:contentDescription="@string/iv_blind_big_desc"
         app:layout_constraintBottom_toBottomOf="@+id/blind_dialog_np_rise_minutes"
         app:layout_constraintLeft_toRightOf="@+id/blind_dialog_iv_blind_small"
         app:layout_constraintRight_toLeftOf="@+id/blind_dialog_np_rise_minutes"
         app:layout_constraintTop_toTopOf="@+id/blind_dialog_np_rise_minutes"
-        app:srcCompat="@drawable/small_circle" />
+        app:srcCompat="@drawable/ic_circle" />
 
     <EditText
         android:id="@+id/blind_dialog_et_blind_big"
