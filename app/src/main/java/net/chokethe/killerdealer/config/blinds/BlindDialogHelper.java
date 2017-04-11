@@ -32,7 +32,7 @@ public class BlindDialogHelper {
     }
 
     static void showUpdate(final Context context, final BlindsAdapter adapter, final KillerDealerDbHelper db, final BlindsAdapter.BlindViewHolder blindViewHolder) {
-        show(context, db, BlindDialogAction.UPDATE, R.string.dialog_add_title, adapter, null, blindViewHolder);
+        show(context, db, BlindDialogAction.UPDATE, R.string.dialog_update_title, adapter, null, blindViewHolder);
     }
 
     private static void show(final Context context, final KillerDealerDbHelper db,
