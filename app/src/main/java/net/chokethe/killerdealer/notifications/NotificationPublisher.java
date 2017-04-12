@@ -27,13 +27,14 @@ public class NotificationPublisher extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        WakeLockHelper.acquire(context);
+
         int notificationId;
         StringBuilder text = new StringBuilder();
         if (RISE_NOTIFICATION_ACTION.equals(intent.getAction())) {
             long now = System.currentTimeMillis();
             SessionHolder sessionHolder = new SessionHolder(context, now);
             sessionHolder.setNextBlindPos();
-            sessionHolder.save(context, now);
             NotificationUtils.scheduleNotification(context, RISE_NOTIFICATION_ACTION, now, sessionHolder.getRiseTimeLeft());
 
             notificationId = RISE_NOTIFICATION_ID;
@@ -41,6 +42,8 @@ public class NotificationPublisher extends BroadcastReceiver {
             text.append(sessionHolder.getSmallBlind());
             text.append(" - ");
             text.append(sessionHolder.getBigBlind());
+
+            sessionHolder.save(context, now);
         } else {
             notificationId = REBUY_NOTIFICATION_ID;
             text.append(context.getString(R.string.rebuy_end_toast));
@@ -62,6 +65,8 @@ public class NotificationPublisher extends BroadcastReceiver {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(notificationId, notificationBuilder.build());
+
+        WakeLockHelper.release();
     }
 
     private int getDefaults(Context context) {

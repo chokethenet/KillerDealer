@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import net.chokethe.killerdealer.SessionHolder;
 
@@ -19,7 +20,11 @@ public class NotificationUtils {
     static void scheduleNotification(Context context, String action, long now, long millisInFuture) {
         PendingIntent pendingIntent = getPendingIntent(context, action);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, now + millisInFuture, pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, now + millisInFuture, pendingIntent);
+        } else {
+            alarmManager.set(AlarmManager.RTC_WAKEUP, now + millisInFuture, pendingIntent);
+        }
     }
 
     private static PendingIntent getPendingIntent(Context context, String action) {
