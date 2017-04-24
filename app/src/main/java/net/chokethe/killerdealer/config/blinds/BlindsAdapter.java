@@ -1,6 +1,7 @@
 package net.chokethe.killerdealer.config.blinds;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -44,8 +45,9 @@ public class BlindsAdapter extends RecyclerView.Adapter<BlindsAdapter.BlindViewH
 
         holder.itemView.setTag(position);
         holder.id = id;
-        ConfigActivity.setBlindTextWithAdaptableSize(holder.mSmallBlind, smallBlind, true);
-        ConfigActivity.setBlindTextWithAdaptableSize(holder.mBigBlind, bigBlind, true);
+        Resources res = mContext.getResources();
+        ConfigActivity.setBlindTextWithAdaptableSize(res, holder.mSmallBlind, smallBlind, true);
+        ConfigActivity.setBlindTextWithAdaptableSize(res, holder.mBigBlind, bigBlind, true);
         holder.mRiseTime.setText(TimeUtils.getTwoDigitsTime(riseTime));
     }
 

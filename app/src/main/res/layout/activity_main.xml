@@ -177,8 +177,8 @@
     <!-- CONTROLS -->
     <ImageView
         android:id="@+id/main_iv_reload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button"
+        android:layout_height="@dimen/button"
         android:layout_marginBottom="@dimen/medium"
         android:layout_marginLeft="@dimen/large"
         android:layout_marginStart="@dimen/large"
@@ -189,8 +189,8 @@
 
     <ImageView
         android:id="@+id/main_iv_play_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/button"
+        android:layout_height="@dimen/button"
         android:layout_marginBottom="@dimen/medium"
         android:layout_marginEnd="@dimen/large"
         android:layout_marginRight="@dimen/large"

@@ -1,11 +1,13 @@
 package net.chokethe.killerdealer.config;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
@@ -82,34 +84,34 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public static void setBlindTextWithAdaptableSize(TextView textView, int value, boolean isConfig) {
-        setBlindAdaptableSize(textView, value, isConfig);
+    public static void setBlindTextWithAdaptableSize(Resources res, TextView textView, int value, boolean isConfig) {
+        setBlindAdaptableSize(res, textView, value, isConfig);
         textView.setText(String.valueOf(value));
     }
 
-    public static void adaptBlindSize(TextView textView) {
-        setBlindAdaptableSize(textView, Integer.valueOf(String.valueOf(textView.getText())), true);
+    public static void adaptBlindSize(Resources res, TextView textView) {
+        setBlindAdaptableSize(res, textView, Integer.valueOf(String.valueOf(textView.getText())), true);
     }
 
-    private static void setBlindAdaptableSize(TextView textView, int value, boolean isConfig) {
-        int textSize = 64;
+    private static void setBlindAdaptableSize(Resources res, TextView textView, int value, boolean isConfig) {
+        float textSize = res.getDimension(R.dimen.text_number);
         if (value > 9999999) {
-            textSize = 20;
+            textSize = res.getDimension(R.dimen.text_x_small);
         } else if (value > 999999) {
-            textSize = 22;
+            textSize = res.getDimension(R.dimen.text_small);
         } else if (value > 99999) {
-            textSize = 26;
+            textSize = res.getDimension(R.dimen.text_medium);
         } else if (value > 9999) {
-            textSize = 30;
+            textSize = res.getDimension(R.dimen.text_large);
         } else if (value > 999) {
-            textSize = 36;
+            textSize = res.getDimension(R.dimen.text_x_large);
         } else if (value > 99) {
-            textSize = 48;
+            textSize = res.getDimension(R.dimen.text_xx_large);
         }
         if (isConfig) {
             textSize = textSize / 2;
         }
-        textView.setTextSize(textSize);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     }
 
     @Override

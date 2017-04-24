@@ -3,6 +3,7 @@ package net.chokethe.killerdealer.config.blinds;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -43,7 +44,7 @@ public class BlindDialogHelper {
                              final BlindsAdapter.BlindViewHolder blindViewHolder) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View blindDialogView = inflateBlindDialogView(blindViewHolder, context);
-        setTextWatchers(blindDialogView);
+        setTextWatchers(context.getResources(), blindDialogView);
 
         builder.setView(blindDialogView)
                 .setTitle(title)
@@ -97,18 +98,20 @@ public class BlindDialogHelper {
         return blindDialogView;
     }
 
-    private static void setTextWatchers(View blindDialogView) {
+    private static void setTextWatchers(Resources res, View blindDialogView) {
         EditText smallBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_et_blind_small);
         EditText bigBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_et_blind_big);
 
-        smallBlindEditText.addTextChangedListener(new BlindEditTextListener(smallBlindEditText));
-        bigBlindEditText.addTextChangedListener(new BlindEditTextListener(bigBlindEditText));
+        smallBlindEditText.addTextChangedListener(new BlindEditTextListener(res, smallBlindEditText));
+        bigBlindEditText.addTextChangedListener(new BlindEditTextListener(res, bigBlindEditText));
     }
 
     private static class BlindEditTextListener implements TextWatcher {
+        private Resources mRes;
         private EditText mBlind;
 
-        BlindEditTextListener(EditText blind) {
+        BlindEditTextListener(Resources res, EditText blind) {
+            mRes = res;
             mBlind = blind;
         }
 
@@ -122,7 +125,7 @@ public class BlindDialogHelper {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            ConfigActivity.adaptBlindSize(mBlind);
+            ConfigActivity.adaptBlindSize(mRes, mBlind);
         }
     }
 }

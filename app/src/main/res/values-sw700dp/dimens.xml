@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="x_small">8dp</dimen>
+    <dimen name="small">16dp</dimen>
+    <dimen name="medium">32dp</dimen>
+    <dimen name="large">88dp</dimen>
+    <dimen name="x_large">108dp</dimen>
+    <dimen name="xx_large">128dp</dimen>
+    <dimen name="xxx_large">224dp</dimen>
+
+    <dimen name="button">256dp</dimen>
+
+    <dimen name="text_title">48sp</dimen>
+    <dimen name="text_smallnumber">64sp</dimen>
+    <dimen name="text_number">128sp</dimen>
+
+    <dimen name="text_x_small">40sp</dimen>
+    <dimen name="text_small">44sp</dimen>
+    <dimen name="text_medium">54sp</dimen>
+    <dimen name="text_large">60sp</dimen>
+    <dimen name="text_x_large">72sp</dimen>
+    <dimen name="text_xx_large">96sp</dimen>
+</resources>

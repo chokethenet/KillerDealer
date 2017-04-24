@@ -131,8 +131,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void updateBlindsUI() {
-        ConfigActivity.setBlindTextWithAdaptableSize(mSmallBlindTextView, mSessionHolder.getSmallBlind(), false);
-        ConfigActivity.setBlindTextWithAdaptableSize(mBigBlindTextView, mSessionHolder.getBigBlind(), false);
+        ConfigActivity.setBlindTextWithAdaptableSize(getResources(), mSmallBlindTextView, mSessionHolder.getSmallBlind(), false);
+        ConfigActivity.setBlindTextWithAdaptableSize(getResources(), mBigBlindTextView, mSessionHolder.getBigBlind(), false);
     }
 
     private void updateTimersUI() {
