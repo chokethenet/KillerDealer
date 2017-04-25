@@ -68,4 +68,29 @@
     <string name="about_logo_desc">App logo</string>
     <string name="about_mail_desc">e-mail logo</string>
     <string name="about_github_desc">GitHub logo</string>
+
+    <!-- RULES -->
+    <string name="rules_title">Rules</string>
+    <string name="rules_A" translatable="false">A</string>
+    <string name="rules_2" translatable="false">2</string>
+    <string name="rules_3" translatable="false">3</string>
+    <string name="rules_4" translatable="false">4</string>
+    <string name="rules_5" translatable="false">5</string>
+    <string name="rules_6" translatable="false">6</string>
+    <string name="rules_7" translatable="false">7</string>
+    <string name="rules_8" translatable="false">8</string>
+    <string name="rules_9" translatable="false">9</string>
+    <string name="rules_10" translatable="false">10</string>
+    <string name="rules_J" translatable="false">J</string>
+    <string name="rules_Q" translatable="false">Q</string>
+    <string name="rules_K" translatable="false">K</string>
+    <string name="rules_royal_flush">1. Royal flush</string>
+    <string name="rules_straight_flush">2. Straight flush</string>
+    <string name="rules_four_kind">3. Four of a kind</string>
+    <string name="rules_full_house">4. Full house</string>
+    <string name="rules_flush">5. Flush</string>
+    <string name="rules_straight">6. Straight</string>
+    <string name="rules_three_kind">7. Three of a kind</string>
+    <string name="rules_two_pair">8. Two pair</string>
+    <string name="rules_one_pair">9. One pair</string>
 </resources>

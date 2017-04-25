@@ -32,6 +32,14 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:name=".rules.RulesActivity"
+            android:label="@string/rules_title"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/settings_title"
             android:parentActivityName=".MainActivity">
@@ -51,6 +59,7 @@
         <receiver
             android:name=".notifications.NotificationPublisher"
             android:exported="false" />
+
     </application>
 
 </manifest>

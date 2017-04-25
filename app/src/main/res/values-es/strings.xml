@@ -46,4 +46,14 @@
     <string name="iv_blind_prev_desc">Ciega anterior</string>
     <string name="iv_rebuy_reload_desc">Reinicio del tiempo de recompra</string>
     <string name="iv_rise_reload_desc">Reinicio del tiempo de subida</string>
+    <string name="rules_title">Reglas</string>
+    <string name="rules_royal_flush">1. Escalera real</string>
+    <string name="rules_straight_flush">2. Escalera de color</string>
+    <string name="rules_four_kind">3. Póquer</string>
+    <string name="rules_full_house">4. Ful</string>
+    <string name="rules_flush">5. Color</string>
+    <string name="rules_straight">6. Escalera</string>
+    <string name="rules_three_kind">7. Trio</string>
+    <string name="rules_two_pair">8. Doble pareja</string>
+    <string name="rules_one_pair">9. Pareja</string>
 </resources>

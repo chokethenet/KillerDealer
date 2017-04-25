@@ -29,6 +29,10 @@
         <item name="android:textSize">@dimen/text_smallnumber</item>
     </style>
 
+    <style name="KillerDealer.Text.smallNumber.white" parent="KillerDealer.Text.smallNumber">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="KillerDealer.Image"></style>
 
     <style name="KillerDealer.Image.circle">

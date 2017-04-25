@@ -24,6 +24,7 @@ import android.widget.TextView;
 import net.chokethe.killerdealer.about.AboutActivity;
 import net.chokethe.killerdealer.config.ConfigActivity;
 import net.chokethe.killerdealer.notifications.NotificationUtils;
+import net.chokethe.killerdealer.rules.RulesActivity;
 import net.chokethe.killerdealer.settings.SettingsActivity;
 import net.chokethe.killerdealer.settings.SettingsHolder;
 import net.chokethe.killerdealer.utils.CommonUtils;
@@ -105,6 +106,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_rules:
+                Intent startRulesActivity = new Intent(this, RulesActivity.class);
+                startActivity(startRulesActivity);
+                return true;
             case R.id.action_settings:
                 Intent startSettingsActivity = new Intent(this, SettingsActivity.class);
                 startActivity(startSettingsActivity);

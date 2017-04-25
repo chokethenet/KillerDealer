@@ -2,6 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_rules"
+        android:orderInCategory="1"
+        android:title="@string/rules_title"
+        android:icon="@drawable/ic_puzzle"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="99"
         android:title="@string/settings_title"
