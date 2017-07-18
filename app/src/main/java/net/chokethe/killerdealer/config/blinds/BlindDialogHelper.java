@@ -55,8 +55,13 @@ public class BlindDialogHelper {
                         EditText smallBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_et_blind_small);
                         EditText bigBlindEditText = (EditText) d.findViewById(R.id.blind_dialog_et_blind_big);
                         NumberPicker riseTimeNumberPicker = (NumberPicker) d.findViewById(R.id.blind_dialog_np_rise_minutes);
-                        int smallBlind = Integer.parseInt(smallBlindEditText.getText().toString());
-                        int bigBlind = Integer.parseInt(bigBlindEditText.getText().toString());
+                        String smallBlindText = smallBlindEditText.getText().toString();
+                        String bigBlindText = bigBlindEditText.getText().toString();
+                        if ("".equals(smallBlindText) || "".equals(bigBlindText)) {
+                            return;
+                        }
+                        int smallBlind = Integer.parseInt(smallBlindText);
+                        int bigBlind = Integer.parseInt(bigBlindText);
                         int riseTime = riseTimeNumberPicker.getValue();
 
                         if (smallBlind > bigBlind) {
@@ -94,6 +99,9 @@ public class BlindDialogHelper {
             EditText bigBlindEditText = (EditText) blindDialogView.findViewById(R.id.blind_dialog_et_blind_big);
             smallBlindEditText.setText(blindViewHolder.mSmallBlind.getText());
             bigBlindEditText.setText(blindViewHolder.mBigBlind.getText());
+            Resources res = context.getResources();
+            ConfigActivity.adaptBlindSize(res, smallBlindEditText);
+            ConfigActivity.adaptBlindSize(res, bigBlindEditText);
         }
         return blindDialogView;
     }

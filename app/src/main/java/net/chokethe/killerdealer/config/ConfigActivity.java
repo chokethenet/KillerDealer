@@ -90,7 +90,10 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public static void adaptBlindSize(Resources res, TextView textView) {
-        setBlindAdaptableSize(res, textView, Integer.valueOf(String.valueOf(textView.getText())), true);
+        String blindText = String.valueOf(textView.getText());
+        if (!"".equals(blindText)) {
+            setBlindAdaptableSize(res, textView, Integer.valueOf(blindText), true);
+        }
     }
 
     private static void setBlindAdaptableSize(Resources res, TextView textView, int value, boolean isConfig) {
